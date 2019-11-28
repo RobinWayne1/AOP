@@ -1,5 +1,9 @@
 package aop.framework;
 
+import aop.advice.Advice;
+
+import java.util.List;
+
 /**
  * @author Robin
  * @date 2019/11/28 -15:48
@@ -7,18 +11,21 @@ package aop.framework;
 public class AnnotationAwareAutoProxyCreator
 {
 
-    private final
-
-    public AnnotationAwareAutoProxyCreator()
+    public AnnotationAwareAutoProxyCreator(Object bean,String beanName)
     {
-
-        wrapIfNecessary();
+        wrapIfNecessary(bean,beanName);
     }
-    public void wrapIfNecessary()
-    {
-        //先解析,查看是否有方法可代理,如果有则执行下一步
 
-        //过滤
+    public void wrapIfNecessary(Object bean,String beanName)
+    {
+        //先解析,查看是否有方法可代理,如果有则封装成advice
+
+
 
     }
+
+//    public List<Advice> findCandidateAdvisors()
+//    {
+//
+//    }
 }

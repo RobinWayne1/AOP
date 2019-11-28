@@ -1,6 +1,7 @@
 package aspect;
 
 import aop.anntations.Aspect;
+import aop.anntations.BeforeAdvice;
 import service.UserService;
 
 /**
@@ -10,4 +11,9 @@ import service.UserService;
 @Aspect(UserService.class)
 public class UserServiceAspect
 {
+    @BeforeAdvice("* service.UserService")
+    public void say()
+    {
+        System.out.println("yes");
+    }
 }

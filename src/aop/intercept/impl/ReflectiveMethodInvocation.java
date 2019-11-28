@@ -15,6 +15,8 @@ public class ReflectiveMethodInvocation implements JoinPoint, InvocationHandler
     @Override
     public Object proceed() throws Throwable
     {
+        //拦截器链的控制
+        //调用拦截器链的invoke
         return null;
     }
 
@@ -22,6 +24,7 @@ public class ReflectiveMethodInvocation implements JoinPoint, InvocationHandler
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable
     {
+
         return null;
     }
 }

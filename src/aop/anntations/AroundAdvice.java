@@ -9,11 +9,11 @@ import java.lang.annotation.Target;
 
 /**
  * @author Robin
- * @date 2019/11/27 -11:00
+ * @date 2019/11/28 -22:58
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface BeforeAdvice
+public @interface AroundAdvice
 {
     @NotNull
     String value();
