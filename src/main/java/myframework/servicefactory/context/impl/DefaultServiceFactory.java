@@ -16,7 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author Robin
  * @date 2019/11/29 -17:01
  */
-public abstract class AbstractDefaultServiceFactory implements ServiceFactory,DefinitionReader
+public class DefaultServiceFactory implements ServiceFactory
 {
     /**
      * service映射
@@ -25,25 +25,49 @@ public abstract class AbstractDefaultServiceFactory implements ServiceFactory,De
 
     private final Map<String, Definition> serviceDefinitionMap = new ConcurrentHashMap<>();
 
-    private final DefinitionReader reader=new PropertiesDefinitionReader();
+    private final DefinitionReader reader;
 
+
+
+    @Override
     public Map<String, Definition> getServiceDefinitionMap()
     {
         return serviceDefinitionMap;
     }
+//
+//    public DefaultServiceFactory(String configPath)
+//    {
+//        reader = new PropertiesDefinitionReader(configPath);
+//
+//    }
 
-    public AbstractDefaultServiceFactory()
+    public DefaultServiceFactory()
     {
+        reader = new PropertiesDefinitionReader();
 
+    }
+
+    /**
+     * 刷新容器
+     */
+    public void parseAndCreateInstance()
+    {
+        //解析Config
+        reader.loadServiceDefinition(this);
+        //创建bean实例
         instantiateClass();
     }
 
+    @Override
     public Set<String> getServiceName()
     {
         return this.serviceDefinitionMap.keySet();
     }
 
-    private void instantiateClass()
+    /**
+     * 实例化service
+     */
+    private synchronized void instantiateClass()
     {
         Set<String> serviceNames = getServiceName();
         try
@@ -69,16 +93,10 @@ public abstract class AbstractDefaultServiceFactory implements ServiceFactory,De
     }
 
 
-
-
     private Object getSingleton(String serviceName)
     {
-        Object singletonObject;
-        singletonObject = serviceMap.get(serviceName);
-        if (singletonObject == null)
-        {
-            
-        }
+        return serviceMap.get(serviceName);
+
     }
 
     /**

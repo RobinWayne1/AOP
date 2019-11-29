@@ -1,5 +1,6 @@
 package myframework.servicefactory.reader;
 
+import myframework.servicefactory.context.ServiceFactory;
 import myframework.servicefactory.definition.impl.ServiceDefinition;
 
 /**
@@ -9,13 +10,10 @@ import myframework.servicefactory.definition.impl.ServiceDefinition;
 public interface DefinitionReader
 {
     /**
-     * 获得配置中的sevice类,并加载进JVM
+     * 获得配置中的service类,并加载进JVM
+     *
+     * @param serviceFactory
      */
-    void loadServiceDefinition();
+    void loadServiceDefinition(ServiceFactory serviceFactory);
 
-//    /**
-//     * 获得definition
-//     * @return ServiceDefinition
-//     */
-//    ServiceDefinition getServiceDefinition();
 }
