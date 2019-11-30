@@ -2,8 +2,7 @@ package myframework.servicefactory.context.impl;
 
 
 import myframework.servicefactory.context.Context;
-import myframework.servicefactory.context.ServiceFactory;
-import myframework.servicefactory.reader.DefinitionReader;
+import myframework.servicefactory.context.BeanFactory;
 
 /**
  * @author Robin
@@ -13,7 +12,7 @@ public class WebApplicationContext implements Context
 {
 
 
-    private final ServiceFactory serviceFactory ;
+    private final BeanFactory serviceFactory ;
 
 //    public WebApplicationContext(String configPath)
 //    {
@@ -22,18 +21,19 @@ public class WebApplicationContext implements Context
 
     public WebApplicationContext()
     {
-        serviceFactory=new DefaultServiceFactory();
+        serviceFactory=new DefaultBeanFactory();
+        serviceFactory.parseAndCreateInstance();
     }
 
     /**
      * 从ObjectFactory中返回指定bean
      *
-     * @param serviceName
+     * @param beanName
      * @return
      */
     @Override
-    public Object getService(String serviceName)
+    public Object getBean(String beanName)
     {
-        return serviceFactory.getBean(serviceName);
+        return serviceFactory.getBean(beanName);
     }
 }

@@ -1,13 +1,9 @@
 package myframework.util;
 
-import myframework.aop.advice.Advice;
-import myframework.aop.advisor.Advisor;
-import myframework.aop.advice.impl.BeforeAdvice;
+import myframework.exception.PropertiesException;
 
 import java.io.IOException;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
-import java.util.List;
+import java.io.InputStream;
 import java.util.Properties;
 
 /**
@@ -30,10 +26,17 @@ public class ConfigUtil
         try
         {
             //这个getResourceAsStream方法就是把文件转为inputStream的方式
-            prop.load(ConfigUtil.class.getResourceAsStream(PROPERTIES_PATH));
-        } catch (IOException e)
+            InputStream inputStream=ConfigUtil.class.getResourceAsStream(PROPERTIES_PATH);
+            if(inputStream==null)
+            {
+                throw new PropertiesException(ConfigUtil.class,"please put file 'framework.properties' to the correct path");
+            }
+            prop.load(inputStream);
+        }
+
+        catch (IOException e)
         {
-            e.printStackTrace();
+            throw new PropertiesException(ConfigUtil.class,"'framework.properties' IOException");
         }
 
     }
@@ -47,7 +50,7 @@ public class ConfigUtil
 
     public static String[] getServicePackage()
     {
-        String[] packages=config.getProperty("framework.service-scan-package").split(",");
+        String[] packages = config.getProperty("framework.service-scan-package").split(",");
         return packages;
     }
 

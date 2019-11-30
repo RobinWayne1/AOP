@@ -12,8 +12,8 @@ public interface Context
     String ROOT_CONTEXT_NAME="CAFEBABE."+ Context.class.getName() + ".ROOT";
     /**
      * 从ObjectFactory中返回指定bean
-     * @param serviceName
+     * @param beanName
      * @return
      */
-    Object getService(String serviceName);
+    Object getBean(String beanName);
 }

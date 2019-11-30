@@ -1,9 +1,8 @@
 package myframework.servicefactory.reader.impl;
 
-import myframework.servicefactory.context.ServiceFactory;
-import myframework.servicefactory.context.impl.DefaultServiceFactory;
+import myframework.servicefactory.context.BeanFactory;
 import myframework.servicefactory.definition.Definition;
-import myframework.servicefactory.definition.impl.ServiceDefinition;
+import myframework.servicefactory.definition.impl.BeanDefinition;
 import myframework.servicefactory.reader.DefinitionReader;
 import myframework.util.ConfigUtil;
 import myframework.util.FileUtil;
@@ -29,7 +28,7 @@ public class PropertiesDefinitionReader  implements DefinitionReader
      * 获得配置中的sevice类,并加载进JVM
      */
     @Override
-    public void loadServiceDefinition(ServiceFactory serviceFactory)
+    public void loadServiceDefinition(BeanFactory beanFactory)
     {
         String[] servicePackages = ConfigUtil.getServicePackage();
         for (String p : servicePackages)
@@ -38,8 +37,8 @@ public class PropertiesDefinitionReader  implements DefinitionReader
             for (Class cl : classes)
             {
                 String serviceName = cl.getName().toLowerCase();
-                Definition definition = new ServiceDefinition(new CopyOnWriteArraySet<>(Arrays.asList(cl.getDeclaredMethods())), cl, serviceName);
-                serviceFactory.getServiceDefinitionMap().put(serviceName, definition);
+                Definition definition = new BeanDefinition(new CopyOnWriteArraySet<>(Arrays.asList(cl.getDeclaredMethods())), cl, serviceName);
+                beanFactory.getBeanDefinitionMap().put(serviceName, definition);
             }
         }
     }

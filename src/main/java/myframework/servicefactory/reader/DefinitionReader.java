@@ -1,7 +1,6 @@
 package myframework.servicefactory.reader;
 
-import myframework.servicefactory.context.ServiceFactory;
-import myframework.servicefactory.definition.impl.ServiceDefinition;
+import myframework.servicefactory.context.BeanFactory;
 
 /**
  * @author Robin
@@ -10,10 +9,10 @@ import myframework.servicefactory.definition.impl.ServiceDefinition;
 public interface DefinitionReader
 {
     /**
-     * 获得配置中的service类,并加载进JVM
+     * 获得配置中的config
      *
-     * @param serviceFactory
+     * @param beanFactory
      */
-    void loadServiceDefinition(ServiceFactory serviceFactory);
+    void loadServiceDefinition(BeanFactory beanFactory);
 
 }

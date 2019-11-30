@@ -9,7 +9,7 @@ import java.util.Set;
  * @author Robin
  * @date 2019/11/29 -12:37
  */
-public interface ServiceFactory
+public interface BeanFactory
 {
     /**
      * 返回指定bean
@@ -19,17 +19,20 @@ public interface ServiceFactory
     Object getBean(String beanName);
 
     /**
-     * 返回service信息
+     * 返回bean信息
      * @return
      */
-    Map<String, Definition> getServiceDefinitionMap();
+    Map<String, Definition> getBeanDefinitionMap();
 
 
     /**
-     * 返回service名
+     * 返回bean信息
      * @return
      */
-    Set<String> getServiceName();
+    Set<String> getBeanName();
 
-
+    /**
+     * 刷新容器
+     */
+    void parseAndCreateInstance();
 }

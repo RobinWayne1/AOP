@@ -14,15 +14,18 @@ import java.util.concurrent.CopyOnWriteArraySet;
  * @author Robin
  * @date 2019/11/29 -16:22
  */
-public class ServiceDefinition implements Definition
+public class BeanDefinition implements Definition
 {
+    /**
+     * 供AOP使用
+     */
     private final Set<Method> methods;
 
     private final Class serviceClass;
 
     private final String serviceName;
 
-    public ServiceDefinition(Set<Method> methods, Class serviceClass, String serviceName)
+    public BeanDefinition(Set<Method> methods, Class serviceClass, String serviceName)
     {
         this.methods = methods;
         this.serviceClass = serviceClass;
@@ -36,26 +39,26 @@ public class ServiceDefinition implements Definition
     }
 
     @Override
-    public Class getServiceClass()
+    public Class getBeanClass()
     {
         return serviceClass;
     }
 
     @Override
-    public String getServiceName()
+    public String getBeanName()
     {
         return serviceName;
     }
 
-    /**
-     * 某类的所有方法映射
-     */
-    private final Map<Class, Set<Method>> serviceDefinitionMap = new ConcurrentHashMap<>();
-
-    /**
-     * servicename和class的映射
-     */
-    private final Map<String, Class> serviceClassMap = new ConcurrentHashMap<>();
+//    /**
+//     * 某类的所有方法映射
+//     */
+//    private final Map<Class, Set<Method>> serviceDefinitionMap = new ConcurrentHashMap<>();
+//
+//    /**
+//     * servicename和class的映射
+//     */
+//    private final Map<String, Class> serviceClassMap = new ConcurrentHashMap<>();
 
 
 }

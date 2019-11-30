@@ -12,9 +12,9 @@ public interface Definition
 {
     Set<Method> getMethods();
 
-    Class getServiceClass();
+    Class getBeanClass();
 
-    String getServiceName()
+    String getBeanName();
 
 //    /**
 //     * 将Class与类方法映射存入Map,可供AOP模块使用
