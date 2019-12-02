@@ -1,16 +1,12 @@
 package myframework.aop.framework;
 
-import myframework.aop.advice.Advice;
-import myframework.aop.advice.impl.BeforeAdvice;
-import myframework.aop.advisor.Advisor;
-import myframework.servicefactory.aware.BeanFactoryAware;
-import myframework.servicefactory.factory.BeanFactory;
-import myframework.servicefactory.factory.ConfigurableBeanFactory;
-import myframework.servicefactory.processor.BeanPostProcessor;
-import myframework.util.ConfigUtil;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
-import java.util.List;
+import myframework.aop.advice.AspectAdvice;
+import myframework.aop.advisor.factory.AspectAdvisorFactory;
+import myframework.aop.advisor.factory.ReflectiveAspectAdvisorFactory;
+import myframework.core.aware.BeanFactoryAware;
+import myframework.core.factory.BeanFactory;
+import myframework.core.factory.ConfigurableInstantiationCapableBeanFactory;
+import myframework.core.processor.BeanPostProcessor;
 
 /**
  * @author Robin
@@ -19,7 +15,11 @@ import java.util.List;
 public class AnnotationAwareAutoProxyCreator implements BeanPostProcessor, BeanFactoryAware
 {
 
-    private BeanFactory beanFactory;
+    private ConfigurableInstantiationCapableBeanFactory beanFactory;
+
+    private BeanFactoryAspectAdvisorBuilder builder;
+
+    private AspectAdvisorFactory advisorFactory;
     /**
      * 后置后处理器
      *
@@ -41,7 +41,12 @@ public class AnnotationAwareAutoProxyCreator implements BeanPostProcessor, BeanF
     @Override
     public void setBeanFactory(BeanFactory beanFactory)
     {
-        this.beanFactory=beanFactory;
+        this.beanFactory=(ConfigurableInstantiationCapableBeanFactory)beanFactory;
+
+        this.advisorFactory=new ReflectiveAspectAdvisorFactory(this.beanFactory);
+
+        this.builder=new BeanFactoryAspectAdvisorBuilder(this.beanFactory,this.advisorFactory);
+
     }
 
     //    public AnnotationAwareAutoProxyCreator(Object bean,String beanName)

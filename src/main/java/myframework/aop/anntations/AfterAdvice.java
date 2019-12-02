@@ -10,7 +10,7 @@ import java.lang.annotation.*;
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-@Repeatable(AfterAdvices.class)
+
 public @interface AfterAdvice
 {
     @NotNull
