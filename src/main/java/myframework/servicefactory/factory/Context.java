@@ -1,15 +1,17 @@
-package myframework.servicefactory.context;
+package myframework.servicefactory.factory;
 
-import myframework.servicefactory.context.impl.WebApplicationContext;
+
 
 /**
+ *
+ * 有时间需要改写合并context和beanfactory
  * @author Robin
  * @date 2019/11/29 -12:32
  */
 public interface Context
 {
 
-    String ROOT_CONTEXT_NAME="CAFEBABE."+ Context.class.getName() + ".ROOT";
+
     /**
      * 从ObjectFactory中返回指定bean
      * @param beanName

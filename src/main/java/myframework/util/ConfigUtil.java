@@ -29,7 +29,7 @@ public class ConfigUtil
             InputStream inputStream=ConfigUtil.class.getResourceAsStream(PROPERTIES_PATH);
             if(inputStream==null)
             {
-                throw new PropertiesException(ConfigUtil.class,"please put file 'framework.properties' to the correct path");
+                throw new PropertiesException(ConfigUtil.class,"please put file 'framework.properties' to the resource directory");
             }
             prop.load(inputStream);
         }
@@ -44,11 +44,10 @@ public class ConfigUtil
     public static String[] getProxyClass()
     {
         String[] clazz = config.getProperty("framework.aop.proxy-class").split(",");
-        System.out.println(clazz);
         return clazz;
     }
 
-    public static String[] getServicePackage()
+    public static String[] getBeanPackage()
     {
         String[] packages = config.getProperty("framework.service-scan-package").split(",");
         return packages;

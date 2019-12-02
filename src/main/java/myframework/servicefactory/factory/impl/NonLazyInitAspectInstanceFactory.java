@@ -1,6 +1,6 @@
-package myframework.servicefactory.context.impl;
+package myframework.servicefactory.factory.impl;
 
-import myframework.servicefactory.context.BeanFactory;
+import myframework.servicefactory.factory.BeanFactory;
 import myframework.servicefactory.definition.Definition;
 
 import java.util.Map;
@@ -10,6 +10,7 @@ import java.util.Set;
  * @author Robin
  * @date 2019/11/30 -17:51
  */
+//后处理器执行时开始build,作用是可以包装defaultbeanfactory
 public class NonLazyInitAspectInstanceFactory implements BeanFactory
 {
     /**
@@ -50,7 +51,7 @@ public class NonLazyInitAspectInstanceFactory implements BeanFactory
      * 刷新容器
      */
     @Override
-    public void parseAndCreateInstance()
+    public void createInstance()
     {
 
     }

@@ -1,4 +1,4 @@
-package myframework.servicefactory.context;
+package myframework.servicefactory.factory;
 
 import myframework.servicefactory.definition.Definition;
 
@@ -11,18 +11,14 @@ import java.util.Set;
  */
 public interface BeanFactory
 {
+
+
     /**
      * 返回指定bean
      * @param beanName
      * @return
      */
     Object getBean(String beanName);
-
-    /**
-     * 返回bean信息
-     * @return
-     */
-    Map<String, Definition> getBeanDefinitionMap();
 
 
     /**
@@ -31,8 +27,8 @@ public interface BeanFactory
      */
     Set<String> getBeanName();
 
-    /**
-     * 刷新容器
-     */
-    void parseAndCreateInstance();
+//    /**
+//     * 刷新容器
+//     */
+//    void createInstance();
 }

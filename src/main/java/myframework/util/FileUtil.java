@@ -19,7 +19,8 @@ import java.util.jar.JarFile;
 public class FileUtil
 {
     /**
-     * 以文件的形式来获取包下的所有Class
+     * 以文件的形式来获取包下的所有Class,一次调用遍历包下的所有文件,如果是class加入集合,如果是包继续递归(不可能传进来一个类名作为参数
+     * ,因为getClasses扫描的只有一个包,不包含包外面的类,所以要扫描的类只可能包含在packagePath包里)
      *
      * @param packageName
      * @param packagePath
@@ -40,7 +41,7 @@ public class FileUtil
         // 如果存在 就获取包下的所有文件 包括目录
         File[] dirfiles = dir.listFiles(new FileFilter()
         {
-            // 自定义过滤规则 如果可以循环(包含子目录) 或则是以.class结尾的文件(编译好的java类文件)
+            // 自定义过滤规则 如果可以循环(包含子目录) 或则是以.class结尾的文件(编译好的java类文件),则加入dirfiles
             @Override
             public boolean accept(File file)
             {
@@ -97,6 +98,7 @@ public class FileUtil
         Enumeration<URL> dirs;
         try
         {
+            //先使用父类加载器加载到[0],而使用父类加载器时是递归调用getResources,再使用当前类加载器加载到[1]
             dirs = Thread.currentThread().getContextClassLoader().getResources(packageDirName);
             // 循环迭代下去
             while (dirs.hasMoreElements())

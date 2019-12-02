@@ -1,17 +1,19 @@
 package myframework.servicefactory.reader.impl;
 
-import myframework.servicefactory.context.BeanFactory;
 import myframework.servicefactory.definition.Definition;
 import myframework.servicefactory.definition.impl.BeanDefinition;
 import myframework.servicefactory.reader.DefinitionReader;
 import myframework.util.ConfigUtil;
 import myframework.util.FileUtil;
 
-import java.util.Arrays;
+import java.lang.reflect.Method;
+import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.CopyOnWriteArraySet;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
+ *
+ * 获得bean配置
  * @author Robin
  * @date 2019/11/29 -17:56
  */
@@ -25,20 +27,22 @@ public class PropertiesDefinitionReader  implements DefinitionReader
 //    }
 
     /**
-     * 获得配置中的sevice类,并加载进JVM
+     * 获得配置中的bean类,并加载进JVM,返回beanMap(包装器)
      */
     @Override
-    public void loadServiceDefinition(BeanFactory beanFactory)
+    public void loadBeanDefinition(Map<String, Definition> map)
     {
-        String[] servicePackages = ConfigUtil.getServicePackage();
+        String[] servicePackages = ConfigUtil.getBeanPackage();
         for (String p : servicePackages)
         {
             Set<Class<?>> classes = FileUtil.getClasses(p);
             for (Class cl : classes)
             {
-                String serviceName = cl.getName().toLowerCase();
-                Definition definition = new BeanDefinition(new CopyOnWriteArraySet<>(Arrays.asList(cl.getDeclaredMethods())), cl, serviceName);
-                beanFactory.getBeanDefinitionMap().put(serviceName, definition);
+                String clName=cl.getName();
+                //需要修改beanname
+                String beanName =clName.substring(clName.lastIndexOf("."),clName.length()).toLowerCase();
+                Definition definition = new BeanDefinition(new CopyOnWriteArrayList<Method>(cl.getDeclaredMethods()), cl, beanName);
+                map.put(beanName, definition);
             }
         }
     }

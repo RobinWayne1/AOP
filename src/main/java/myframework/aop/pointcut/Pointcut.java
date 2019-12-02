@@ -12,7 +12,9 @@ import java.util.Set;
 //切点类,声明切点方法符合的类和方法
 public class Pointcut
 {
-    private Set<Method> methods=new HashSet<>();
+    private Set<Method> methods = new HashSet<>();
 
-    private Set<Class> classes=new HashSet<>();
+    private Set<Class> classes = new HashSet<>();
+
+    private String expression;
 }

@@ -1,6 +1,8 @@
 package myframework.servicefactory.reader;
 
-import myframework.servicefactory.context.BeanFactory;
+import myframework.servicefactory.definition.Definition;
+
+import java.util.Map;
 
 /**
  * @author Robin
@@ -10,9 +12,8 @@ public interface DefinitionReader
 {
     /**
      * 获得配置中的config
-     *
-     * @param beanFactory
+     * @param map
      */
-    void loadServiceDefinition(BeanFactory beanFactory);
+    void loadBeanDefinition(Map<String, Definition> map);
 
 }

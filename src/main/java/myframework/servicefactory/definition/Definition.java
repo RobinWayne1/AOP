@@ -10,7 +10,7 @@ import java.util.Set;
  */
 public interface Definition
 {
-    Set<Method> getMethods();
+    List<Method> getMethods();
 
     Class getBeanClass();
 

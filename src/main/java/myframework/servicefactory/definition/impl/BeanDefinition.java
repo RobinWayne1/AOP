@@ -3,12 +3,8 @@ package myframework.servicefactory.definition.impl;
 import myframework.servicefactory.definition.Definition;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
  * @author Robin
@@ -19,21 +15,21 @@ public class BeanDefinition implements Definition
     /**
      * 供AOP使用
      */
-    private final Set<Method> methods;
+    private final List<Method> methods;
 
-    private final Class serviceClass;
+    private final Class beanClass;
 
-    private final String serviceName;
+    private final String beanName;
 
-    public BeanDefinition(Set<Method> methods, Class serviceClass, String serviceName)
+    public BeanDefinition(List<Method> methods, Class beanClass, String beanName)
     {
         this.methods = methods;
-        this.serviceClass = serviceClass;
-        this.serviceName = serviceName;
+        this.beanClass = beanClass;
+        this.beanName = beanName;
     }
 
     @Override
-    public Set<Method> getMethods()
+    public List<Method> getMethods()
     {
         return methods;
     }
@@ -41,13 +37,13 @@ public class BeanDefinition implements Definition
     @Override
     public Class getBeanClass()
     {
-        return serviceClass;
+        return beanClass;
     }
 
     @Override
     public String getBeanName()
     {
-        return serviceName;
+        return beanName;
     }
 
 //    /**
