@@ -9,12 +9,11 @@ import service.UserService;
  * @author Robin
  * @date 2019/11/27 -11:25
  */
-@Aspect(UserService.class)
+@Aspect()
 public class UserServiceAspect
 {
     //返回类型 类路径
     @BeforeAdvice("* service.UserService *.*(..)")
-    @AfterAdvice("* service.UserService *.*(..)")
     @AfterAdvice("* service.UserService *.*(..)")
     public void say()
     {

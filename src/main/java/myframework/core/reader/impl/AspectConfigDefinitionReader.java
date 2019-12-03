@@ -25,38 +25,32 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class AspectConfigDefinitionReader implements DefinitionReader
 {
     /**
-     * 获得配置中的config
+     * 获得配置中的config,此方法有些冗余,留作以后扩展
+     *
+     * 取消了以proxyClass的properties的属性,目前只支持auto-proxy,需要在bean属性里添加上aspect
      *
      * @param map
      */
     @Override
     public void loadBeanDefinition(Map<String, Definition> map)
     {
-        String[] aspects = ConfigUtil.getProxyClass();
-        for (String aspect : aspects)
-        {
-            Set<Class<?>> classSet = FileUtil.getClasses(aspect);
-            for (Class cl : classSet)
-            {
-                Method[] methods = cl.getDeclaredMethods();
-                List<Method> methodList=new CopyOnWriteArrayList<>(methods);
-                String clName=cl.getName();
 
-                String beanName =clName.substring(clName.lastIndexOf("."),clName.length()).toLowerCase();
-                Map<Method, Annotation[]> adviceMethodInfoMap=new ConcurrentHashMap<>(16);
-                Annotation[]annotations;
-                for(Method method:methods)
-                {
-                    annotations=method.getAnnotations();
-                    adviceMethodInfoMap.put(method,annotations);
-                }
-                Definition definition=new AspectBeanDefinition(methodList,cl,beanName,adviceMethodInfoMap);
-                map.put(beanName,definition);
-            }
-        }
-        if(aspects.length!=0)
+//        String[] aspects = ConfigUtil.getProxyClass();
+//        for (String aspect : aspects)
+//        {
+//            Set<Class<?>> classSet = FileUtil.getClasses(aspect);
+//            for (Class cl : classSet)
+//            {
+//                String clName=cl.getName();
+//                String beanName =clName.substring(clName.lastIndexOf("."),clName.length()).toLowerCase();
+//                Definition definition=new AspectBeanDefinition(cl,beanName);
+//                map.put(beanName,definition);
+//            }
+//        }
+       // if(aspects.length!=0)
+        if(ConfigUtil.getAutoProxy().equals("true"))
         {
-            Definition definition=new BeanDefinition(null, AnnotationAwareAutoProxyCreator.class,"annotationAwareAutoProxyCreator");
+            Definition definition=new BeanDefinition( AnnotationAwareAutoProxyCreator.class,"annotationAwareAutoProxyCreator");
             map.put("annotationAwareAutoProxyCreator",definition);
         }
     }

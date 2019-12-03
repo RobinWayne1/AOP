@@ -15,14 +15,11 @@ import java.util.Map;
 public class AspectBeanDefinition extends BeanDefinition
 {
 
-    private final Map<Method, Annotation[]> adviceMethodInfoMap;
 
 
-
-    public AspectBeanDefinition(List<Method> methods, Class beanClass, String beanName, Map<Method, Annotation[]> adviceMethodInfoMap)
+    public AspectBeanDefinition( Class beanClass, String beanName)
     {
-        super(methods, beanClass, beanName);
-        this.adviceMethodInfoMap=adviceMethodInfoMap;
+        super( beanClass, beanName);
 
     }
 

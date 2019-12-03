@@ -21,5 +21,5 @@ public interface AspectAdvisorFactory
 
     Advice getAdvice();
 
-    boolean isAspect(String beanName);
+    boolean isAspect(Class<?> beanType);
 }

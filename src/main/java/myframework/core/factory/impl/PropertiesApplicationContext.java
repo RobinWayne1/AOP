@@ -39,7 +39,17 @@ public class PropertiesApplicationContext implements WebApplicationContext
 
         registerPostProcessor();
 
-        this.beanFactory.createBean();
+        createAllBeanInstance();
+    }
+
+    private void createAllBeanInstance()
+    {
+        Set<String> beanNames = getBeanName();
+
+        for (String beanName : beanNames)
+        {
+            this.beanFactory.createBean(beanName);
+        }
     }
 
     protected void registerPostProcessor()

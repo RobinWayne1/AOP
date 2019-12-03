@@ -1,5 +1,7 @@
 package myframework.aop.factory;
 
+import myframework.aop.metadata.AspectMetaData;
+
 /**
  * @author Robin
  * @date 2019/12/2 -22:02
@@ -12,4 +14,10 @@ public interface AspectInstanceFactory
      * @return
      */
     Object getAspectInstance();
+
+    /**
+     * 返回切面元信息
+     * @return
+     */
+    AspectMetaData getAspectMetaData();
 }

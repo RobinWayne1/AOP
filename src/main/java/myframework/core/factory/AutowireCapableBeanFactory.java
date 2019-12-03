@@ -20,7 +20,7 @@ public interface AutowireCapableBeanFactory extends BeanFactory
     /**
      * 创建bean实例
      */
-    void createBean();
+    Object createBean(String beanName);
 
     /**
      *使用后处理器和awareMethod

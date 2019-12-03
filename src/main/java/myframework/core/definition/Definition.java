@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface Definition
 {
-    List<Method> getMethods();
+//    List<Method> getMethods();
 
     Class getBeanClass();
 

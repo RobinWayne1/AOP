@@ -1,7 +1,7 @@
 package myframework.aop.advisor;
 
 import myframework.aop.advice.Advice;
-import myframework.aop.pointcut.Pointcut;
+import myframework.aop.pointcut.impl.AspectExpressionPointcut;
 
 /**
  *
@@ -24,7 +24,7 @@ public interface Advisor
      * 由子类持有切点
      * @return
      */
-    Pointcut getPointcut();
+    AspectExpressionPointcut getPointcut();
 
 
     /**

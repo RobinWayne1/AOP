@@ -47,9 +47,13 @@ public class ConfigUtil
         return clazz;
     }
 
+    public static String getAutoProxy()
+    {
+        return config.getProperty("framework.aop.auto-proxy");
+    }
     public static String[] getBeanPackage()
     {
-        String[] packages = config.getProperty("framework.service-scan-package").split(",");
+        String[] packages = config.getProperty("framework.bean-scan-package").split(",");
         return packages;
     }
 

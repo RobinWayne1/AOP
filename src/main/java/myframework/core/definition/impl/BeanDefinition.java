@@ -14,24 +14,24 @@ public class BeanDefinition implements Definition
     /**
      * 供AOP使用
      */
-    private final List<Method> methods;
+//    private final List<Method> methods;
 
     private final Class beanClass;
 
     private final String beanName;
 
-    public BeanDefinition(List<Method> methods, Class beanClass, String beanName)
+    public BeanDefinition( Class beanClass, String beanName)
     {
-        this.methods = methods;
+
         this.beanClass = beanClass;
         this.beanName = beanName;
     }
 
-    @Override
-    public List<Method> getMethods()
-    {
-        return methods;
-    }
+//    @Override
+//    public List<Method> getMethods()
+//    {
+//        return methods;
+//    }
 
     @Override
     public Class getBeanClass()

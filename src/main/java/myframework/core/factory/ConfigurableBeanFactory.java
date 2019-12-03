@@ -30,6 +30,11 @@ public interface ConfigurableBeanFactory extends BeanFactory
      */
     Map<String, Definition> getBeanDefinitionMap();
 
-
+    /**
+     * 返回bean的类型
+     * @param beanName
+     * @return
+     */
+    Class<?> getType(String beanName);
 
 }

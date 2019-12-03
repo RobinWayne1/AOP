@@ -2,7 +2,7 @@ package myframework.aop.advisor.impl;
 
 import myframework.aop.advice.Advice;
 import myframework.aop.advisor.Advisor;
-import myframework.aop.pointcut.Pointcut;
+import myframework.aop.pointcut.impl.AspectExpressionPointcut;
 
 /**
  * @author Robin
@@ -11,9 +11,15 @@ import myframework.aop.pointcut.Pointcut;
 public class PointcutAdvisor implements Advisor
 {
 
-    private final Pointcut pointcut=new Pointcut();
+    private final AspectExpressionPointcut pointcut;
 
     private Advice advice=EMPTY_ADVICE;
+
+    public PointcutAdvisor(AspectExpressionPointcut pointcut, Advice advice)
+    {
+        this.pointcut = pointcut;
+        this.advice = advice;
+    }
 
     /**
      * 由子类持有切点
@@ -21,7 +27,7 @@ public class PointcutAdvisor implements Advisor
      * @return
      */
     @Override
-    public Pointcut getPointcut()
+    public AspectExpressionPointcut getPointcut()
     {
         return this.pointcut;
     }

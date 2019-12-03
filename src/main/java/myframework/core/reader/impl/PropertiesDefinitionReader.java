@@ -41,7 +41,7 @@ public class PropertiesDefinitionReader  implements DefinitionReader
                 String clName=cl.getName();
                 //需要修改beanname
                 String beanName =clName.substring(clName.lastIndexOf("."),clName.length()).toLowerCase();
-                Definition definition = new BeanDefinition(new CopyOnWriteArrayList<Method>(cl.getDeclaredMethods()), cl, beanName);
+                Definition definition = new BeanDefinition( cl, beanName);
                 map.put(beanName, definition);
             }
         }

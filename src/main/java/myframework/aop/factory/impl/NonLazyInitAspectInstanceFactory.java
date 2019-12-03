@@ -1,6 +1,8 @@
 package myframework.aop.factory.impl;
 
 import myframework.aop.factory.AspectInstanceFactory;
+import myframework.aop.metadata.AspectMetaData;
+import myframework.aop.metadata.factory.AspectMetaDataFactory;
 import myframework.core.factory.BeanFactory;
 import myframework.core.definition.Definition;
 import myframework.core.factory.ConfigurableInstantiationCapableBeanFactory;
@@ -25,10 +27,13 @@ public class NonLazyInitAspectInstanceFactory implements AspectInstanceFactory
 
     private final ConfigurableInstantiationCapableBeanFactory beanFactory;
 
-    public NonLazyInitAspectInstanceFactory(String aspectName, ConfigurableInstantiationCapableBeanFactory beanFactory)
+    private final AspectMetaData aspectMetaData;
+
+    public NonLazyInitAspectInstanceFactory(String aspectName, ConfigurableInstantiationCapableBeanFactory beanFactory,Class<?> beanType)
     {
         this.aspectName = aspectName;
         this.beanFactory = beanFactory;
+        this.aspectMetaData= AspectMetaDataFactory.getAspectMetaData(beanType,aspectName);
     }
 
     /**
@@ -41,5 +46,16 @@ public class NonLazyInitAspectInstanceFactory implements AspectInstanceFactory
     public Object getAspectInstance()
     {
         return this.beanFactory.getBean(this.aspectName);
+    }
+
+    /**
+     * 返回切面元信息
+     *
+     * @return
+     */
+    @Override
+    public AspectMetaData getAspectMetaData()
+    {
+        return this.aspectMetaData;
     }
 }

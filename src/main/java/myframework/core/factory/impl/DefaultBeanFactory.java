@@ -107,21 +107,21 @@ public class DefaultBeanFactory implements ConfigurableInstantiationCapableBeanF
 
     //需要改动,看是否要将修改过后的bean实例再次送进beanmap中
     @Override
-    public void createBean()
+    public Object createBean(String beanName)
     {
-        Set<String> beanNames = getBeanName();
-
-        for (String beanName : beanNames)
+        for (BeanPostProcessor processor : this.beanPostProcessors)
         {
-            for (BeanPostProcessor processor : this.beanPostProcessors)
-            {
-                //需要修改,不可以单纯从beanMap.getnull
-                processor.postProcessBeforeInitialization(this.beanMap.get(beanName), beanName);
-            }
-            //创建bean实例
-            Object beanInstance = instantiateClass(beanName);
-            this.beanMap.put(beanName, initializeBean(beanInstance, beanName));
+            //需要修改,不可以单纯从beanMap.getnull
+            processor.postProcessBeforeInitialization(this.beanMap.get(beanName), beanName);
         }
+        //创建bean实例
+        Object beanInstance = instantiateClass(beanName);
+
+        Object wrapBean=initializeBean(beanInstance, beanName);
+
+        this.beanMap.put(beanName, wrapBean);
+
+        return wrapBean;
     }
 
     @Override
@@ -182,10 +182,22 @@ public class DefaultBeanFactory implements ConfigurableInstantiationCapableBeanF
         Object beanInstance = this.beanMap.get(beanName);
         if (beanInstance == null)
         {
-           beanInstance= instantiateClass(beanName);
+            beanInstance = createBean(beanName);
         }
         return beanInstance;
 
+    }
+
+    /**
+     * 返回bean的类型
+     *
+     * @param beanName
+     * @return
+     */
+    @Override
+    public Class<?> getType(String beanName)
+    {
+        return this.beanDefinitionMap.get(beanName).getClass();
     }
 
     /**

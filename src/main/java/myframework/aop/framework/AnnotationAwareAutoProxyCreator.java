@@ -30,6 +30,10 @@ public class AnnotationAwareAutoProxyCreator implements BeanPostProcessor, BeanF
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName)
     {
+        /**
+         * 得到所有advisor,然后在所有bean中根据pointcut过滤一部分不需要的advisor
+         * ,然后创建代理
+         */
         return null;
     }
 
@@ -43,7 +47,7 @@ public class AnnotationAwareAutoProxyCreator implements BeanPostProcessor, BeanF
     {
         this.beanFactory=(ConfigurableInstantiationCapableBeanFactory)beanFactory;
 
-        this.advisorFactory=new ReflectiveAspectAdvisorFactory(this.beanFactory);
+        this.advisorFactory=new ReflectiveAspectAdvisorFactory();
 
         this.builder=new BeanFactoryAspectAdvisorBuilder(this.beanFactory,this.advisorFactory);
 
