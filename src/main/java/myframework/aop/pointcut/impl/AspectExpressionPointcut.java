@@ -3,11 +3,10 @@ package myframework.aop.pointcut.impl;
 import myframework.aop.pointcut.ClassFilter;
 import myframework.aop.pointcut.MethodMatcher;
 import myframework.aop.pointcut.PointCut;
+import myframework.exception.AspectAnnotationException;
 
 import java.lang.reflect.Method;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.Arrays;
 
 /**
  * @author Robin
@@ -16,27 +15,72 @@ import java.util.Set;
 //切点类,声明切点方法符合的类和方法
 public class AspectExpressionPointcut implements ClassFilter, MethodMatcher, PointCut
 {
-    private final  Class<?> returnType;
+    private String returnType;
 
-    private final  Class<?>[]parameterType;
+    private Class<?>[] parameterTypes;
 
-    private final Integer  parameterCount;
+    private String expression;
 
-    private final String expression;
+    private String methodName;
 
-    private final String methodName;
+    private Class<?> aspectClass;
+    /**
+     * 表达式上所需增强的类
+     */
+    private String targetClass;
 
-    private final Class<?> targetClass;
 
+//    public AspectExpressionPointcut(Class<?> returnType, Class<?>[] parameterType, Integer parameterCount, String expression)
+//    {
+//        this.returnType = returnType;
+//        this.parameterType = parameterType;
+//        this.parameterCount = parameterCount;
+//        this.expression = expression;
+//    }
 
-
-    public AspectExpressionPointcut(Class<?> returnType, Class<?>[] parameterType, Integer parameterCount, String expression)
+    public AspectExpressionPointcut(Class aspectClass)
     {
-        this.returnType = returnType;
-        this.parameterType = parameterType;
-        this.parameterCount = parameterCount;
-        this.expression = expression;
+        this.aspectClass = aspectClass;
     }
+
+    public void setExpression(String expression)
+    {
+
+        this.expression = expression;
+        //split从左边开始算起,比如三个空格,split空格就会得到一个空格,看blog
+        String[] ele = expression.split(" ");
+        if (ele.length != 3)
+        {
+            throw new AspectAnnotationException(this.aspectClass, "Bad aspect method expression format!");
+        }
+        this.returnType = ele[0];
+        this.targetClass = ele[1];
+        this.methodName = ele[2].substring(0, ele[2].indexOf("\\(") - 1);
+        String parameters = ele[2].substring(ele[2].indexOf("\\(") + 1, ele[2].length() - 1);
+        if (parameters.equals(".."))
+        {
+            this.parameterTypes = ALL_PARAMETERS;
+        } else
+        {
+            try
+            {
+                //如果是""则会返回"",表示无参数
+                String[] parameter = parameters.split(",");
+                Class<?>[] parameterType = new Class[parameter.length];
+                for (int p = 0; p < parameter.length; p++)
+                {
+                    //如果为""这里就会报错,需要修改方法
+                    parameterType[p] = Class.forName(parameter[p]);
+                }
+                this.parameterTypes=parameterType;
+            } catch (ClassNotFoundException e)
+            {
+                throw new AspectAnnotationException(this.aspectClass, "Bad aspect method expression format or parameters type no exist!");
+            }
+        }
+
+    }
+
 
     @Override
     public MethodMatcher getMethodMatcher()
@@ -53,11 +97,20 @@ public class AspectExpressionPointcut implements ClassFilter, MethodMatcher, Poi
     @Override
     public boolean matches(Class targetClass)
     {
-        return false;
+        //如果目标类是*即为某包下的所有方法
+        if(this.targetClass.endsWith("*"))
+        {
+            return this.targetClass.startsWith(targetClass.getPackage().getName());
+        }
+        else
+        {
+            return this.targetClass.equals(targetClass.getName());
+        }
+
     }
 
     /**
-     * 用来和受到代理的方法匹配并返回结果
+     * 用来和受到代理的方法匹配并返回结果,在classFilter通过之后调用
      *
      * @param proxyMethod
      * @return
@@ -65,6 +118,16 @@ public class AspectExpressionPointcut implements ClassFilter, MethodMatcher, Poi
     @Override
     public boolean matches(Method proxyMethod)
     {
+       if(this.methodName.equals("*"))
+       {
+           //注意getParameterTypes()方法如果无参数则会返回一个ALL_PARAMETERS,即ALL_PARAMETERS不能区别无参和任意参
+           if(this.parameterTypes!=ALL_PARAMETERS)
+           {
+               Arrays.equals()
+           }
+           return proxyMethod.getParameterTypes().equals(this.parameterTypes);
+
+       }
         return false;
     }
 }

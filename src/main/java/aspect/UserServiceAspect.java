@@ -13,8 +13,8 @@ import service.UserService;
 public class UserServiceAspect
 {
     //返回类型 类路径
-    @BeforeAdvice("* service.UserService *.*(..)")
-    @AfterAdvice("* service.UserService *.*(..)")
+    @BeforeAdvice("* service.UserService.* *(..)")
+    @AfterAdvice("* service.UserService.* *(..)")
     public void say()
     {
         System.out.println("yes");

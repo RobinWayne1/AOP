@@ -6,6 +6,8 @@ package myframework.aop.pointcut;
  */
 public interface PointCut
 {
+     Class<?>[] ALL_PARAMETERS={};
+
     MethodMatcher getMethodMatcher();
 
     ClassFilter getClassFilter();
