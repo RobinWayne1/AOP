@@ -33,6 +33,13 @@ public class ReflectiveAspectAdvisorFactory implements AspectAdvisorFactory
         return null;
     }
 
+    /**
+     * AspectMetaDataFactory只过滤了没有注解的切面方法,这里还要过滤一遍有注解但是非AOP注解的方法,但是
+     * 此处方法只控制了如果注解不含value()时返回null,或者是含value()不符合格式报错,并没有检测是否是AOP注解
+     * @param candidateAdviceMethod
+     * @param amd
+     * @return
+     */
     private AspectExpressionPointcut getPointCut(Method candidateAdviceMethod, AspectMetaData amd)
     {
         Map<Method, Annotation> adviceMethodMap = amd.getAdviceMethodInfoMap();
@@ -40,13 +47,17 @@ public class ReflectiveAspectAdvisorFactory implements AspectAdvisorFactory
         String attributeName = "value";
         try
         {
+            //即得到注解的value()定义方法
             Method annotationValue = aspectAnnotation.annotationType().getDeclaredMethod(attributeName);
+            //然后invoke这个注解定义方法得到注解目标方法上的value值
             String expression=(String)annotationValue.invoke(aspectAnnotation);
-            AspectExpressionPointcut aep=new AspectExpressionPointcut(expression,amd.getAspectClass());
+            AspectExpressionPointcut aep=new AspectExpressionPointcut(amd.getAspectClass());
+            aep.setExpression(expression);
             return aep;
 
         } catch (NoSuchMethodException e)
         {
+
             return null;
         } catch (InvocationTargetException e)
         {
@@ -59,14 +70,27 @@ public class ReflectiveAspectAdvisorFactory implements AspectAdvisorFactory
         }
     }
 
+    /**
+     *
+     * @param candidateAdviceMethod
+     * @param aif
+     * @return
+     */
     @Override
     public Advisor getAdvisor(Method candidateAdviceMethod, AspectInstanceFactory aif)
     {
         /**
          * 此处的逻辑是用candidateAdviceMethod从aspectMetaData中获取definition,然后获取注解pointcut,
          * 再生成一个PointCutAdvisor
+         * 1、先生成切点
+         * 2、根据切点生成Advisor
          */
-
+        AspectExpressionPointcut pc=getPointCut(candidateAdviceMethod,aif.getAspectMetaData());
+        if(pc==null)
+        {
+            return null;
+        }
+        //要构建advice,首先要知道advice类型,即需要aif
 
         return null;
     }

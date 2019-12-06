@@ -64,7 +64,7 @@ public class AspectExpressionPointcut implements ClassFilter, MethodMatcher, Poi
         {
             try
             {
-                //如果是""则会返回"",表示无参数
+                //如果是""则会返回"",表示无参数  ( )所以当无参数时写法应该是空格,即()和(..)作用一样,代表任意参数
                 String[] parameter = parameters.split(",");
                 Class<?>[] parameterType = new Class[parameter.length];
                 for (int p = 0; p < parameter.length; p++)
@@ -112,20 +112,22 @@ public class AspectExpressionPointcut implements ClassFilter, MethodMatcher, Poi
     /**
      * 用来和受到代理的方法匹配并返回结果,在classFilter通过之后调用
      *
+     * 重点测试对象
      * @param proxyMethod
      * @return
      */
     @Override
     public boolean matches(Method proxyMethod)
     {
+        //先判断方法名
        if(this.methodName.equals("*"))
        {
-           //注意getParameterTypes()方法如果无参数则会返回一个ALL_PARAMETERS,即ALL_PARAMETERS不能区别无参和任意参
+
            if(this.parameterTypes!=ALL_PARAMETERS)
            {
-               Arrays.equals()
+               return Arrays.equals(this.parameterTypes,proxyMethod.getParameterTypes());
            }
-           return proxyMethod.getParameterTypes().equals(this.parameterTypes);
+           return true;
 
        }
         return false;
