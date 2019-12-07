@@ -1,21 +1,14 @@
 package myframework.aop.metadata.factory;
 
-import myframework.aop.anntations.AfterAdvice;
-import myframework.aop.anntations.AroundAdvice;
-import myframework.aop.anntations.BeforeAdvice;
+import myframework.aop.anntations.After;
+import myframework.aop.anntations.Around;
+import myframework.aop.anntations.Before;
 import myframework.aop.metadata.AspectMetaData;
-import myframework.core.definition.Definition;
-import myframework.core.definition.impl.AspectBeanDefinition;
-import myframework.util.ConfigUtil;
-import myframework.util.FileUtil;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @author Robin
@@ -23,9 +16,16 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class AspectMetaDataFactory
 {
-    private final static Class[] ASPECTJ_ANNOTATION_CLASSES = {AroundAdvice.class, BeforeAdvice.class, AfterAdvice.class};
+    private final static Class[] ASPECTJ_ANNOTATION_CLASSES = {Around.class, Before.class, After.class};
 
 
+    //在此注意一下,私有内部类在其他类中是连声明都无法声明,而内部类私有方法可以被声明,但无法创建内部类对象
+    /**
+     *
+     * @param cl
+     * @param aspectName
+     * @return
+     */
     public static AspectMetaData getAspectMetaData(Class cl, String aspectName)
     {
 

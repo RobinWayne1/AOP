@@ -1,6 +1,5 @@
 package myframework.aop.framework;
 
-import myframework.aop.advice.AspectAdvice;
 import myframework.aop.advisor.factory.AspectAdvisorFactory;
 import myframework.aop.advisor.factory.ReflectiveAspectAdvisorFactory;
 import myframework.core.aware.BeanFactoryAware;
@@ -9,6 +8,7 @@ import myframework.core.factory.ConfigurableInstantiationCapableBeanFactory;
 import myframework.core.processor.BeanPostProcessor;
 
 /**
+ * 目标:实现一个abstract类,将所有重要的creator方法放上去
  * @author Robin
  * @date 2019/11/28 -15:48
  */
@@ -76,11 +76,11 @@ public class AnnotationAwareAutoProxyCreator implements BeanPostProcessor, BeanF
 //                    Annotation[]annotations=m.getAnnotations();
 //                    for(Annotation annotation:annotations)
 //                    {
-//                        if(annotation.annotationType().equals(BeforeAdvice.class))
+//                        if(annotation.annotationType().equals(Before.class))
 //                        {
 //                            //在此之前先验证目标方法的存在性
 //
-//                            Advice advice=new BeforeAdvice();
+//                            Advice advice=new Before();
 //                        }
 //                    }
 //                }

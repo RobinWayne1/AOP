@@ -1,9 +1,8 @@
 package aspect;
 
-import myframework.aop.anntations.AfterAdvice;
+import myframework.aop.anntations.After;
 import myframework.aop.anntations.Aspect;
-import myframework.aop.anntations.BeforeAdvice;
-import service.UserService;
+import myframework.aop.anntations.Before;
 
 /**
  * @author Robin
@@ -13,8 +12,8 @@ import service.UserService;
 public class UserServiceAspect
 {
     //返回类型 类路径
-    @BeforeAdvice("* service.UserService.* *(..)")
-    @AfterAdvice("* service.UserService.* *(..)")
+    @Before("* service.UserService.* *(..)")
+    @After("* service.UserService.* *(..)")
     public void say()
     {
         System.out.println("yes");

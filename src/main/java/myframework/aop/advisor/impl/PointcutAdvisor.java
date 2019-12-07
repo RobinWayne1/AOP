@@ -2,7 +2,12 @@ package myframework.aop.advisor.impl;
 
 import myframework.aop.advice.Advice;
 import myframework.aop.advisor.Advisor;
+import myframework.aop.advisor.factory.AspectAdvisorFactory;
+import myframework.aop.factory.AspectInstanceFactory;
+import myframework.aop.factory.MetaDataAwareAspectInstanceFactory;
 import myframework.aop.pointcut.impl.AspectExpressionPointcut;
+
+import java.lang.reflect.Method;
 
 /**
  * @author Robin
@@ -15,10 +20,27 @@ public class PointcutAdvisor implements Advisor
 
     private Advice advice=EMPTY_ADVICE;
 
-    public PointcutAdvisor(AspectExpressionPointcut pointcut, Advice advice)
+    private final AspectAdvisorFactory advisorFactory;
+
+    private final MetaDataAwareAspectInstanceFactory aspectInstanceFactory;
+
+    private final Method adviceMethod;
+
+    private final String aspectName;
+
+    public PointcutAdvisor(AspectExpressionPointcut pointcut, AspectAdvisorFactory advisorFactory, MetaDataAwareAspectInstanceFactory aspectInstanceFactory, Method adviceMethod, String aspectName)
     {
         this.pointcut = pointcut;
-        this.advice = advice;
+        this.advisorFactory = advisorFactory;
+        this.aspectInstanceFactory = aspectInstanceFactory;
+        this.adviceMethod = adviceMethod;
+        this.aspectName = aspectName;
+        this.advice=instantiateAdvice();
+    }
+
+    private Advice instantiateAdvice()
+    {
+        return this.advisorFactory.getAdvice(this.adviceMethod,this.pointcut,this.aspectInstanceFactory);
     }
 
     /**

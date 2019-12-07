@@ -3,6 +3,8 @@ package myframework.aop.advisor.factory;
 import myframework.aop.advice.Advice;
 import myframework.aop.advisor.Advisor;
 import myframework.aop.factory.AspectInstanceFactory;
+import myframework.aop.factory.MetaDataAwareAspectInstanceFactory;
+import myframework.aop.pointcut.impl.AspectExpressionPointcut;
 
 import java.lang.reflect.Method;
 import java.util.List;
@@ -15,11 +17,11 @@ import java.util.List;
  */
 public interface AspectAdvisorFactory
 {
-    List<Advisor> getAdvisors(AspectInstanceFactory aif);
+    List<Advisor> getAdvisors(MetaDataAwareAspectInstanceFactory aif);
 
-    Advisor getAdvisor(Method candidateAdviceMethod,AspectInstanceFactory aif);
+    Advisor getAdvisor(Method candidateAdviceMethod,MetaDataAwareAspectInstanceFactory aif);
 
-    Advice getAdvice();
+    Advice getAdvice(Method candidateAdviceMethod, AspectExpressionPointcut aexp,MetaDataAwareAspectInstanceFactory aif);
 
     boolean isAspect(Class<?> beanType);
 }

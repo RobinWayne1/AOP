@@ -9,6 +9,7 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 
 /**
+ * 注意此处的成员变量都是对Pointcut的阐释(即目标方法,而不是增强方法)
  * @author Robin
  * @date 2019/11/28 -21:34
  */

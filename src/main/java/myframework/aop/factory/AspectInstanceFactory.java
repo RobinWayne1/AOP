@@ -15,9 +15,5 @@ public interface AspectInstanceFactory
      */
     Object getAspectInstance();
 
-    /**
-     * 返回切面元信息
-     * @return
-     */
-    AspectMetaData getAspectMetaData();
+
 }

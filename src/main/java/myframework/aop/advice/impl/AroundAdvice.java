@@ -1,7 +1,9 @@
 package myframework.aop.advice.impl;
 
-import myframework.aop.advice.Advice;
-import myframework.aop.advice.AspectAdvice;
+import myframework.aop.advice.AbstractAspectAdvice;
+import myframework.aop.advice.MethodInterceptor;
+import myframework.aop.factory.AspectInstanceFactory;
+import myframework.aop.pointcut.impl.AspectExpressionPointcut;
 
 import java.lang.reflect.Method;
 
@@ -9,13 +11,11 @@ import java.lang.reflect.Method;
  * @author Robin
  * @date 2019/11/28 -17:57
  */
-public class AroundAdvice implements AspectAdvice
+public class AroundAdvice extends AbstractAspectAdvice implements MethodInterceptor
 {
-    private final Method m;
-
-    public AroundAdvice(Method m)
+    public AroundAdvice(Method aspectJAdviceMethod, AspectExpressionPointcut pointcut, AspectInstanceFactory aspectInstanceFactory)
     {
-        this.m = m;
+        super(aspectJAdviceMethod, pointcut, aspectInstanceFactory);
     }
 
     @Override
