@@ -7,9 +7,23 @@ package myframework.aop.joinpoint;
 public class MethodInvocationProceedingJoinPoint implements ProceedingJoinPoint
 {
 
+
     private Object[] args;
 
 //    private final ProxyMethodInvocation methodInvocation;
+
+
+    /**
+     * 给环绕通知一个机会修改入参
+     *
+     * @param args
+     * @return
+     */
+    @Override
+    public Object proceed(Object[] args)
+    {
+        return null;
+    }
 
     @Override
     public Object proceed() throws Throwable

@@ -2,8 +2,8 @@ package myframework.aop.advisor.impl;
 
 import myframework.aop.advice.Advice;
 import myframework.aop.advisor.Advisor;
+import myframework.aop.advisor.PointcutAdvisor;
 import myframework.aop.advisor.factory.AspectAdvisorFactory;
-import myframework.aop.factory.AspectInstanceFactory;
 import myframework.aop.factory.MetaDataAwareAspectInstanceFactory;
 import myframework.aop.pointcut.impl.AspectExpressionPointcut;
 
@@ -13,12 +13,12 @@ import java.lang.reflect.Method;
  * @author Robin
  * @date 2019/11/28 -23:22
  */
-public class PointcutAdvisor implements Advisor
+public class DefaultPointcutAdvisor implements PointcutAdvisor
 {
 
     private final AspectExpressionPointcut pointcut;
 
-    private Advice advice=EMPTY_ADVICE;
+    private Advice advice;
 
     private final AspectAdvisorFactory advisorFactory;
 
@@ -28,7 +28,7 @@ public class PointcutAdvisor implements Advisor
 
     private final String aspectName;
 
-    public PointcutAdvisor(AspectExpressionPointcut pointcut, AspectAdvisorFactory advisorFactory, MetaDataAwareAspectInstanceFactory aspectInstanceFactory, Method adviceMethod, String aspectName)
+    public DefaultPointcutAdvisor(AspectExpressionPointcut pointcut, AspectAdvisorFactory advisorFactory, MetaDataAwareAspectInstanceFactory aspectInstanceFactory, Method adviceMethod, String aspectName)
     {
         this.pointcut = pointcut;
         this.advisorFactory = advisorFactory;

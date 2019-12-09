@@ -1,18 +1,49 @@
 package myframework.aop.intercept.impl;
 
 
+import myframework.aop.advised.AdvisedSupport;
 import myframework.aop.intercept.Joinpoint;
 import myframework.aop.intercept.MethodInvocation;
+import myframework.aop.intercept.ProxyMethodInvocation;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.util.Map;
 
 /**
  * @author Robin
  * @date 2019/11/28 -15:40
  */
-public class ReflectiveMethodInvocation implements MethodInvocation, InvocationHandler
+public class ReflectiveMethodInvocation implements ProxyMethodInvocation, InvocationHandler
 {
+
+    private Map<String, Object> userAttributes;
+
+    private final AdvisedSupport config;
+
+    public ReflectiveMethodInvocation(AdvisedSupport config)
+    {
+        this.config = config;
+    }
+
+    /**
+     * 给用户存放整个连接点执行过程的
+     *
+     * @param key
+     * @return
+     */
+    @Override
+    public Object getAttribute(String key)
+    {
+        return null;
+    }
+
+    @Override
+    public Object setAttribute(String key, Object value)
+    {
+        return null;
+    }
+
     /**
      * 获得当前连接点的目标方法
      *

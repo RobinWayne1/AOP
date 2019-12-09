@@ -2,7 +2,6 @@ package myframework.aop.advisor.factory;
 
 import myframework.aop.advice.Advice;
 import myframework.aop.advisor.Advisor;
-import myframework.aop.factory.AspectInstanceFactory;
 import myframework.aop.factory.MetaDataAwareAspectInstanceFactory;
 import myframework.aop.pointcut.impl.AspectExpressionPointcut;
 
@@ -19,7 +18,7 @@ public interface AspectAdvisorFactory
 {
     List<Advisor> getAdvisors(MetaDataAwareAspectInstanceFactory aif);
 
-    Advisor getAdvisor(Method candidateAdviceMethod,MetaDataAwareAspectInstanceFactory aif);
+    Advisor getAdvisor(Method candidateAdviceMethod, MetaDataAwareAspectInstanceFactory aif);
 
     Advice getAdvice(Method candidateAdviceMethod, AspectExpressionPointcut aexp,MetaDataAwareAspectInstanceFactory aif);
 

@@ -13,18 +13,9 @@ public interface Advisor
 {
 
 
-    /**
-     * 空实现以填充字段
-     */
-    Advice EMPTY_ADVICE=new Advice()
-    {
-    };
 
-    /**
-     * 由子类持有切点
-     * @return
-     */
-    AspectExpressionPointcut getPointcut();
+
+
 
 
     /**

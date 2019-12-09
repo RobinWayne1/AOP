@@ -1,6 +1,8 @@
 package myframework.aop.factory;
 
 import com.sun.istack.internal.Nullable;
+import myframework.aop.advice.MethodInterceptor;
+import myframework.aop.advised.Advised;
 
 import java.lang.reflect.Method;
 import java.util.List;
@@ -11,5 +13,12 @@ import java.util.List;
  */
 public interface AdvisorChainFactory
 {
-    List<Object> getInterceptorsAndDynamicInterceptionAdvice(Advised config, Method method, @Nullable Class<?> targetClass);
+    /**
+     * 得到拦截器链
+     * @param config
+     * @param method
+     * @param targetClass
+     * @return
+     */
+    List<MethodInterceptor> getInterceptorsAndDynamicInterceptionAdvice(Advised config, Method method,  Class<?> targetClass);
 }

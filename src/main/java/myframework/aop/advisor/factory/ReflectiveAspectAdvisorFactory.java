@@ -6,7 +6,7 @@ import myframework.aop.advice.impl.AfterAdvice;
 import myframework.aop.advice.impl.AroundAdvice;
 import myframework.aop.advice.impl.BeforeAdvice;
 import myframework.aop.advisor.Advisor;
-import myframework.aop.advisor.impl.PointcutAdvisor;
+import myframework.aop.advisor.impl.DefaultPointcutAdvisor;
 
 import myframework.aop.anntations.After;
 import myframework.aop.anntations.Around;
@@ -16,6 +16,7 @@ import myframework.aop.factory.MetaDataAwareAspectInstanceFactory;
 import myframework.aop.metadata.AspectMetaData;
 import myframework.aop.pointcut.impl.AspectExpressionPointcut;
 import myframework.exception.NotAnAspectException;
+import myframework.exception.UnknowedOperationException;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
@@ -28,25 +29,42 @@ import java.util.Map;
  * @author Robin
  * @date 2019/12/2 -20:56
  */
-public class ReflectiveAspectAdvisorFactory implements AspectAdvisorFactory
+public class ReflectiveAspectAdvisorFactory extends AbstractAdvisorFactory
 {
+    protected void validate(Class<?> cl)
+    {
+        if (!isAspect(cl))
+        {
+            throw new NotAnAspectException(cl);
+        }
+    }
 
 
+    /**
+     * 考虑一下到底要不要将aspectMetadata封装成内部类,每次都做切面判断实在太过麻烦
+     *
+     * @param aif
+     * @return
+     */
     @Override
     public List<Advisor> getAdvisors(MetaDataAwareAspectInstanceFactory aif)
     {
-        List<Advisor> candidateAdvisor=new ArrayList<>();
+
+        validate(aif.getAspectMetaData().getAspectClass());
+        List<Advisor> candidateAdvisor = new ArrayList<>();
+
         for (Method candidateAdviceMethod : aif.getAspectMetaData().getAdviceMethodInfoMap().keySet())
         {
             candidateAdvisor.add(getAdvisor(candidateAdviceMethod, aif));
         }
+
         return candidateAdvisor;
     }
 
     /**
      * AspectMetaDataFactory只过滤了没有注解的切面方法,这里还要过滤一遍有注解但是非AOP注解的方法,但是
      * 此处方法只控制了如果注解不含value()时返回null,或者是含value()不符合格式报错,并没有检测是否是AOP注解
-     *
+     * <p>
      * AspectMetaDataFactory过滤了AOP注解,所以在AspectMetaData的map中必定是正确的AOP注解,楼上有误
      *
      * @param candidateAdviceMethod
@@ -92,11 +110,12 @@ public class ReflectiveAspectAdvisorFactory implements AspectAdvisorFactory
     @Override
     public Advisor getAdvisor(Method candidateAdviceMethod, MetaDataAwareAspectInstanceFactory aif)
     {
+        validate(aif.getAspectMetaData().getAspectClass());
         /**
          * 此处的逻辑是用candidateAdviceMethod从aspectMetaData中获取definition,然后获取注解pointcut,
          * 再生成一个PointCutAdvisor
          * 1、先生成切点
-         * 2、根据切点生成Advisor
+         * 2、根据切点生成Advisor,里面由生成advice
          */
         AspectExpressionPointcut pc = getPointCut(candidateAdviceMethod, aif.getAspectMetaData());
         if (pc == null)
@@ -104,10 +123,9 @@ public class ReflectiveAspectAdvisorFactory implements AspectAdvisorFactory
             return null;
         }
         //要构建advice,首先要知道advice类型,即需要aif
-        return new PointcutAdvisor(pc, this, aif, candidateAdviceMethod, aif.getAspectMetaData().getAspectName());
+        return new DefaultPointcutAdvisor(pc, this, aif, candidateAdviceMethod, aif.getAspectMetaData().getAspectName());
 
     }
-
 
 
     @Override
@@ -120,36 +138,29 @@ public class ReflectiveAspectAdvisorFactory implements AspectAdvisorFactory
     @Override
     public Advice getAdvice(Method candidateAdviceMethod, AspectExpressionPointcut aexp, MetaDataAwareAspectInstanceFactory aif)
     {
+        validate(aif.getAspectMetaData().getAspectClass());
         //不知为何spring的advice有了AspectMetaData还要传入AspectName
-        if(isAspect(aif.getAspectMetaData().getAspectClass()))
-        {
-            Annotation methodAnnotation = aif.getAspectMetaData().getAdviceMethodInfoMap().get(candidateAdviceMethod);
-            AbstractAspectAdvice abstractAspectAdvice;
-            if(methodAnnotation instanceof After)
-            {
-                abstractAspectAdvice=new AfterAdvice(candidateAdviceMethod,aexp,aif);
-            }
-            else if(methodAnnotation instanceof Before)
-            {
-                abstractAspectAdvice=new BeforeAdvice(candidateAdviceMethod,aexp,aif);
-            }
-            else if(methodAnnotation instanceof Around)
-            {
-                abstractAspectAdvice=new AroundAdvice(candidateAdviceMethod,aexp,aif);
-            }
-            else
-            {
-                throw new UnsupportedOperationException("Unsupported advice type on method"+candidateAdviceMethod);
-            }
-            abstractAspectAdvice.setAspectName(aif.getAspectMetaData().getAspectName());
-            //abstractAspectAdvice.calculateArgumentBindings();
 
-            return abstractAspectAdvice;
-        }
-        else
+        Annotation methodAnnotation = aif.getAspectMetaData().getAdviceMethodInfoMap().get(candidateAdviceMethod);
+        AbstractAspectAdvice abstractAspectAdvice;
+        if (methodAnnotation instanceof After)
         {
-            throw new NotAnAspectException(aif.getAspectMetaData().getAspectClass());
+            abstractAspectAdvice = new AfterAdvice(candidateAdviceMethod, aexp, aif);
+        } else if (methodAnnotation instanceof Before)
+        {
+            abstractAspectAdvice = new BeforeAdvice(candidateAdviceMethod, aexp, aif);
+        } else if (methodAnnotation instanceof Around)
+        {
+            abstractAspectAdvice = new AroundAdvice(candidateAdviceMethod, aexp, aif);
+        } else
+        {
+            throw new UnknowedOperationException("Unsupported advice type on method" + candidateAdviceMethod);
         }
+        abstractAspectAdvice.setAspectName(aif.getAspectMetaData().getAspectName());
+        //abstractAspectAdvice.calculateArgumentBindings();
+
+        return abstractAspectAdvice;
+
 
     }
 }

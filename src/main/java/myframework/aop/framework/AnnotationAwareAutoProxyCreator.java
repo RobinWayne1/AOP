@@ -1,41 +1,25 @@
 package myframework.aop.framework;
 
+
+import myframework.aop.advisor.Advisor;
 import myframework.aop.advisor.factory.AspectAdvisorFactory;
 import myframework.aop.advisor.factory.ReflectiveAspectAdvisorFactory;
-import myframework.core.aware.BeanFactoryAware;
-import myframework.core.factory.BeanFactory;
 import myframework.core.factory.ConfigurableInstantiationCapableBeanFactory;
-import myframework.core.processor.BeanPostProcessor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * 目标:实现一个abstract类,将所有重要的creator方法放上去
+ * 此类的主要功能是增加基于注解配置的功能
  * @author Robin
  * @date 2019/11/28 -15:48
  */
-public class AnnotationAwareAutoProxyCreator implements BeanPostProcessor, BeanFactoryAware
+public class AnnotationAwareAutoProxyCreator extends AbstractAdvisorAutoProxyCreator
 {
-
-    private ConfigurableInstantiationCapableBeanFactory beanFactory;
 
     private BeanFactoryAspectAdvisorBuilder builder;
 
     private AspectAdvisorFactory advisorFactory;
-    /**
-     * 后置后处理器
-     *
-     * @param bean
-     * @param beanName
-     * @return
-     */
-    @Override
-    public Object postProcessAfterInitialization(Object bean, String beanName)
-    {
-        /**
-         * 得到所有advisor,然后在所有bean中根据pointcut过滤一部分不需要的advisor
-         * ,然后创建代理
-         */
-        return null;
-    }
 
     /**
      * 将beanFactory传给bean
@@ -43,71 +27,24 @@ public class AnnotationAwareAutoProxyCreator implements BeanPostProcessor, BeanF
      * @param beanFactory
      */
     @Override
-    public void setBeanFactory(BeanFactory beanFactory)
+    public void initBeanFactory(ConfigurableInstantiationCapableBeanFactory beanFactory)
     {
-        this.beanFactory=(ConfigurableInstantiationCapableBeanFactory)beanFactory;
-
         this.advisorFactory=new ReflectiveAspectAdvisorFactory();
 
-        this.builder=new BeanFactoryAspectAdvisorBuilder(this.beanFactory,this.advisorFactory);
-
+        this.builder=new BeanFactoryAspectAdvisorBuilder(beanFactory,this.advisorFactory);
     }
 
-    //    public AnnotationAwareAutoProxyCreator(Object bean,String beanName)
-//    {
-//
-//        wrapIfNecessary(bean,beanName);
-//    }
-//
-//    /**
-//     * 解析advice,用advisor包装,此方法放在creator构造器,wrap前
-//     */
-//    public  List<Advisor> findAdvisors()
-//    {
-//        try
-//        {
-//            String[] aspectClasses = ConfigUtil.getProxyClass();
-//            for (String className : aspectClasses)
-//            {
-//                Class aspectClass = Class.forName(className);
-//                Method[] method=aspectClass.getDeclaredMethods();
-//                for(Method m:method)
-//                {
-//                    Annotation[]annotations=m.getAnnotations();
-//                    for(Annotation annotation:annotations)
-//                    {
-//                        if(annotation.annotationType().equals(Before.class))
-//                        {
-//                            //在此之前先验证目标方法的存在性
-//
-//                            Advice advice=new Before();
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        catch (ClassNotFoundException e)
-//        {
-//            e.printStackTrace();
-//        }
-//
-//    }
-//
-//    public void wrapIfNecessary(Object bean,String beanName)
-//    {
-//        //先解析,查看是否有方法可代理,如果有则封装成advice
-//
-//
-//
-//    }
-//
-//    //解析pointcut
-//    private Advisor parse()
-//    {
-//
-//    }
-//    public List<Advice> findCandidateAdvisors()
-//    {
-//
-//    }
+    /**
+     * 找到候选增强器
+     *
+     * @return
+     */
+    @Override
+    protected List<Advisor> findCandidateAdvisors()
+    {
+        List<Advisor> advisors =new ArrayList<>();
+        //super.findCandidateAdvisors();
+        advisors.addAll(this.builder.buildAspectAdvisor());
+        return advisors;
+    }
 }

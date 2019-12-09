@@ -11,7 +11,7 @@ import myframework.aop.anntations.Before;
 @Aspect()
 public class UserServiceAspect
 {
-    //返回类型 类路径
+    //返回类型 类路径(准确点说,是实现类的类路径)
     @Before("* service.UserService.* *(..)")
     @After("* service.UserService.* *(..)")
     public void say()

@@ -7,4 +7,6 @@ package myframework.aop.advisor.factory;
  */
 public abstract class AbstractAdvisorFactory implements AspectAdvisorFactory
 {
+
+
 }

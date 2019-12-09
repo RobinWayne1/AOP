@@ -42,6 +42,7 @@ public class PropertiesDefinitionReader  implements DefinitionReader
                 //需要修改beanname
                 String beanName =clName.substring(clName.lastIndexOf("."),clName.length()).toLowerCase();
                 Definition definition = new BeanDefinition( cl, beanName);
+                //这里就控制了类的单例
                 map.put(beanName, definition);
             }
         }
