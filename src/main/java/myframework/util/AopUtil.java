@@ -4,7 +4,7 @@ import myframework.aop.advisor.Advisor;
 import myframework.aop.advisor.PointcutAdvisor;
 import myframework.aop.pointcut.ClassFilter;
 import myframework.aop.pointcut.MethodMatcher;
-import myframework.aop.pointcut.PointCut;
+import myframework.aop.pointcut.Pointcut;
 import myframework.exception.AopInvocationException;
 
 import java.lang.reflect.InvocationTargetException;
@@ -57,7 +57,7 @@ public class AopUtil
             if (candidateAdvisor instanceof PointcutAdvisor)
             {
                 PointcutAdvisor pa = (PointcutAdvisor) candidateAdvisor;
-                PointCut pc = pa.getPointcut();
+                Pointcut pc = pa.getPointcut();
                 ClassFilter classFilter = pc.getClassFilter();
                 MethodMatcher methodMatcher = pc.getMethodMatcher();
                 if (!classFilter.matches(beanClass))

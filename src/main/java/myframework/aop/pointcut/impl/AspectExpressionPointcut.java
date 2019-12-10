@@ -2,7 +2,7 @@ package myframework.aop.pointcut.impl;
 
 import myframework.aop.pointcut.ClassFilter;
 import myframework.aop.pointcut.MethodMatcher;
-import myframework.aop.pointcut.PointCut;
+import myframework.aop.pointcut.Pointcut;
 import myframework.exception.AspectAnnotationException;
 
 import java.lang.reflect.Method;
@@ -14,7 +14,7 @@ import java.util.Arrays;
  * @date 2019/11/28 -21:34
  */
 //切点类,声明切点方法符合的类和方法
-public class AspectExpressionPointcut implements ClassFilter, MethodMatcher, PointCut
+public class AspectExpressionPointcut implements ClassFilter, MethodMatcher, Pointcut
 {
     private String returnType;
 

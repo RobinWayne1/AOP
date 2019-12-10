@@ -1,46 +1,44 @@
 package myframework.aop.advisor.impl;
 
 import myframework.aop.advice.Advice;
-import myframework.aop.advisor.Advisor;
 import myframework.aop.advisor.PointcutAdvisor;
-import myframework.aop.advisor.factory.AspectAdvisorFactory;
-import myframework.aop.factory.MetaDataAwareAspectInstanceFactory;
+import myframework.aop.pointcut.Pointcut;
 import myframework.aop.pointcut.impl.AspectExpressionPointcut;
-
-import java.lang.reflect.Method;
+import myframework.aop.pointcut.impl.TruePointcut;
 
 /**
  * @author Robin
- * @date 2019/11/28 -23:22
+ * @date 2019/12/10 -17:01
  */
 public class DefaultPointcutAdvisor implements PointcutAdvisor
 {
-
-    private final AspectExpressionPointcut pointcut;
+    private Pointcut pointcut=Pointcut.TRUE;
 
     private Advice advice;
 
-    private final AspectAdvisorFactory advisorFactory;
-
-    private final MetaDataAwareAspectInstanceFactory aspectInstanceFactory;
-
-    private final Method adviceMethod;
-
-    private final String aspectName;
-
-    public DefaultPointcutAdvisor(AspectExpressionPointcut pointcut, AspectAdvisorFactory advisorFactory, MetaDataAwareAspectInstanceFactory aspectInstanceFactory, Method adviceMethod, String aspectName)
+    public DefaultPointcutAdvisor()
     {
-        this.pointcut = pointcut;
-        this.advisorFactory = advisorFactory;
-        this.aspectInstanceFactory = aspectInstanceFactory;
-        this.adviceMethod = adviceMethod;
-        this.aspectName = aspectName;
-        this.advice=instantiateAdvice();
     }
 
-    private Advice instantiateAdvice()
+    public DefaultPointcutAdvisor(Pointcut pointcut, Advice advice)
     {
-        return this.advisorFactory.getAdvice(this.adviceMethod,this.pointcut,this.aspectInstanceFactory);
+        this.pointcut = pointcut;
+        this.advice = advice;
+    }
+
+    public DefaultPointcutAdvisor(Advice advice)
+    {
+        this.advice = advice;
+    }
+
+    public void setPointcut(Pointcut pointcut)
+    {
+        this.pointcut = pointcut;
+    }
+
+    public void setAdvice(Advice advice)
+    {
+        this.advice = advice;
     }
 
     /**
@@ -48,10 +46,11 @@ public class DefaultPointcutAdvisor implements PointcutAdvisor
      *
      * @return
      */
+
     @Override
-    public AspectExpressionPointcut getPointcut()
+    public Pointcut getPointcut()
     {
-        return this.pointcut;
+        return pointcut;
     }
 
     /**
@@ -62,6 +61,6 @@ public class DefaultPointcutAdvisor implements PointcutAdvisor
     @Override
     public Advice getAdvice()
     {
-        return this.advice;
+        return advice;
     }
 }

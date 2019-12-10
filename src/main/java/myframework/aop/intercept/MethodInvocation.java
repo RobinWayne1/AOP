@@ -18,5 +18,5 @@ public interface MethodInvocation extends Joinpoint
      * 获得当前连接点目标方法的入参值
      * @return
      */
-    Object[] getArgument();
+    Object[] getArguments();
 }

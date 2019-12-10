@@ -14,4 +14,16 @@ public interface ProxyMethodInvocation extends MethodInvocation
     Object getAttribute(String key);
 
     Object setAttribute(String key,Object value);
+
+    /**
+     * 得到代理对象
+     * @return
+     */
+    Object getProxy();
+
+    /**
+     * 主要用于调用过程中更改入参
+     * @param arguments
+     */
+    void setArguments(Object[] arguments);
 }

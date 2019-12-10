@@ -125,11 +125,19 @@ public abstract class AbstractAdvisorAutoProxyCreator implements BeanPostProcess
         {
             return DO_NOT_PROXY;
         }
-        extendAdvisor();
+        extendAdvisor(eligibleAdvisors);
         eligibleAdvisors = sortAdvisors(eligibleAdvisors);
         return eligibleAdvisors.toArray();
     }
 
+    /**
+     * 默认为空方法,留给子类扩展,主要用于某些子类creator
+     * 需要某些advisor时在此处创建并加入advisor链
+     */
+    protected void extendAdvisor(List<Advisor> advisorList)
+    {
+
+    }
     /**
      * 用子类实现的方法
      *

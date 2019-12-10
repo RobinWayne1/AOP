@@ -6,7 +6,7 @@ import myframework.aop.advice.impl.AfterAdvice;
 import myframework.aop.advice.impl.AroundAdvice;
 import myframework.aop.advice.impl.BeforeAdvice;
 import myframework.aop.advisor.Advisor;
-import myframework.aop.advisor.impl.DefaultPointcutAdvisor;
+import myframework.aop.advisor.impl.InstantiationModelAwarePointcutAdvisorImpl;
 
 import myframework.aop.anntations.After;
 import myframework.aop.anntations.Around;
@@ -42,6 +42,7 @@ public class ReflectiveAspectAdvisorFactory extends AbstractAdvisorFactory
 
     /**
      * 考虑一下到底要不要将aspectMetadata封装成内部类,每次都做切面判断实在太过麻烦
+     * 但是这样也增加了可扩展性
      *
      * @param aif
      * @return
@@ -123,7 +124,7 @@ public class ReflectiveAspectAdvisorFactory extends AbstractAdvisorFactory
             return null;
         }
         //要构建advice,首先要知道advice类型,即需要aif
-        return new DefaultPointcutAdvisor(pc, this, aif, candidateAdviceMethod, aif.getAspectMetaData().getAspectName());
+        return new InstantiationModelAwarePointcutAdvisorImpl(pc, this, aif, candidateAdviceMethod, aif.getAspectMetaData().getAspectName());
 
     }
 
@@ -142,24 +143,25 @@ public class ReflectiveAspectAdvisorFactory extends AbstractAdvisorFactory
         //不知为何spring的advice有了AspectMetaData还要传入AspectName
 
         Annotation methodAnnotation = aif.getAspectMetaData().getAdviceMethodInfoMap().get(candidateAdviceMethod);
-        AbstractAspectAdvice abstractAspectAdvice;
+        AbstractAspectAdvice aopAdvice;
         if (methodAnnotation instanceof After)
         {
-            abstractAspectAdvice = new AfterAdvice(candidateAdviceMethod, aexp, aif);
+            aopAdvice = new AfterAdvice(candidateAdviceMethod, aexp, aif);
         } else if (methodAnnotation instanceof Before)
         {
-            abstractAspectAdvice = new BeforeAdvice(candidateAdviceMethod, aexp, aif);
+            aopAdvice = new BeforeAdvice(candidateAdviceMethod, aexp, aif);
         } else if (methodAnnotation instanceof Around)
         {
-            abstractAspectAdvice = new AroundAdvice(candidateAdviceMethod, aexp, aif);
+            aopAdvice = new AroundAdvice(candidateAdviceMethod, aexp, aif);
         } else
         {
             throw new UnknowedOperationException("Unsupported advice type on method" + candidateAdviceMethod);
         }
-        abstractAspectAdvice.setAspectName(aif.getAspectMetaData().getAspectName());
-        //abstractAspectAdvice.calculateArgumentBindings();
+        aopAdvice.setAspectName(aif.getAspectMetaData().getAspectName());
 
-        return abstractAspectAdvice;
+        aopAdvice.calculateArgumentBindings();
+
+        return aopAdvice;
 
 
     }

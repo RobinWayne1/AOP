@@ -16,5 +16,5 @@ public interface ProceedingJoinPoint extends JoinPoint
      * @param args
      * @return
      */
-     Object proceed(Object[]args);
+     Object proceed(Object[]args)throws Throwable;
 }

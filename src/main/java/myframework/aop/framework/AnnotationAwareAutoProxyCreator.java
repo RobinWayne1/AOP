@@ -1,9 +1,12 @@
 package myframework.aop.framework;
 
 
+import myframework.aop.advice.impl.ExposeInvocationInterceptor;
 import myframework.aop.advisor.Advisor;
 import myframework.aop.advisor.factory.AspectAdvisorFactory;
 import myframework.aop.advisor.factory.ReflectiveAspectAdvisorFactory;
+import myframework.aop.advisor.impl.DefaultPointcutAdvisor;
+import myframework.aop.advisor.impl.InstantiationModelAwarePointcutAdvisorImpl;
 import myframework.core.factory.ConfigurableInstantiationCapableBeanFactory;
 
 import java.util.ArrayList;
@@ -32,6 +35,16 @@ public class AnnotationAwareAutoProxyCreator extends AbstractAdvisorAutoProxyCre
         this.advisorFactory=new ReflectiveAspectAdvisorFactory();
 
         this.builder=new BeanFactoryAspectAdvisorBuilder(beanFactory,this.advisorFactory);
+    }
+
+    /**
+     * 默认为空方法,留给子类扩展,主要用于某些子类creator
+     * 需要某些advisor时在此处创建并加入advisor链
+     */
+    @Override
+    protected void extendAdvisor(List<Advisor>advisorList)
+    {
+        advisorList.add(new DefaultPointcutAdvisor(ExposeInvocationInterceptor.INSATNCE));
     }
 
     /**
