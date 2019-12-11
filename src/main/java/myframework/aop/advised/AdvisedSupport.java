@@ -12,6 +12,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 给ReflectiveMethodInvocation使用的config,将在容器加载时解析好的所有切面方法执行
+ * 相关成员信息放到此处
+ *
  * @author Robin
  * @date 2019/12/9 -18:56
  */

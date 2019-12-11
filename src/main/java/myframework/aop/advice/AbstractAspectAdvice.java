@@ -14,6 +14,9 @@ import myframework.exception.UnknowedOperationException;
 import java.lang.reflect.Method;
 
 /**
+ * 提供所有advice的抽象,提供advice的参数绑定(如JoinPoint)与advice的调用,
+ * 具体的拦截器链由advice调用逻辑顺序由子类实现
+ *
  * @author Robin
  * @date 2019/12/7 -10:23
  */
