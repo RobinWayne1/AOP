@@ -10,6 +10,7 @@ import java.util.Arrays;
 
 /**
  * 注意此处的成员变量都是对Pointcut的阐释(即目标方法,而不是增强方法)
+ *
  * @author Robin
  * @date 2019/11/28 -21:34
  */
@@ -73,7 +74,7 @@ public class AspectExpressionPointcut implements ClassFilter, MethodMatcher, Poi
                     //如果为""这里就会报错,需要修改方法
                     parameterType[p] = Class.forName(parameter[p]);
                 }
-                this.parameterTypes=parameterType;
+                this.parameterTypes = parameterType;
             } catch (ClassNotFoundException e)
             {
                 throw new AspectAnnotationException(this.aspectClass, "Bad aspect method expression format or parameters type no exist!");
@@ -82,6 +83,10 @@ public class AspectExpressionPointcut implements ClassFilter, MethodMatcher, Poi
 
     }
 
+    public String getExpression()
+    {
+        return expression;
+    }
 
     @Override
     public MethodMatcher getMethodMatcher()
@@ -99,11 +104,10 @@ public class AspectExpressionPointcut implements ClassFilter, MethodMatcher, Poi
     public boolean matches(Class targetClass)
     {
         //如果目标类是*即为某包下的所有方法
-        if(this.targetClass.endsWith("*"))
+        if (this.targetClass.endsWith("*"))
         {
             return this.targetClass.startsWith(targetClass.getPackage().getName());
-        }
-        else
+        } else
         {
             return this.targetClass.equals(targetClass.getName());
         }
@@ -112,8 +116,12 @@ public class AspectExpressionPointcut implements ClassFilter, MethodMatcher, Poi
 
     /**
      * 用来和受到代理的方法匹配并返回结果,在classFilter通过之后调用
-     *
+     * <p>
      * 重点测试对象
+     * <p>
+     * <p>
+     * 返回类型没判断老哥
+     *
      * @param proxyMethod
      * @return
      */
@@ -121,16 +129,18 @@ public class AspectExpressionPointcut implements ClassFilter, MethodMatcher, Poi
     public boolean matches(Method proxyMethod)
     {
         //先判断方法名
-       if(this.methodName.equals("*"))
-       {
-
-           if(this.parameterTypes!=ALL_PARAMETERS)
-           {
-               return Arrays.equals(this.parameterTypes,proxyMethod.getParameterTypes());
-           }
-           return true;
-
-       }
+        if (this.methodName.equals("*") || this.methodName.equals(proxyMethod.getName()))
+        {
+            //得到合法的名字,即不是[Ljava.lang.Object,而是java.lang.Object[]
+            if (this.returnType.equals(proxyMethod.getReturnType().getCanonicalName()))
+            {
+                if (this.parameterTypes != ALL_PARAMETERS)
+                {
+                    return Arrays.equals(this.parameterTypes, proxyMethod.getParameterTypes());
+                }
+                return true;
+            }
+        }
         return false;
     }
 }

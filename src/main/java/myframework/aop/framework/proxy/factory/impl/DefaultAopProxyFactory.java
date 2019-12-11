@@ -1,9 +1,9 @@
-package myframework.aop.proxy.factory.impl;
+package myframework.aop.framework.proxy.factory.impl;
 
 import myframework.aop.advised.AdvisedSupport;
-import myframework.aop.proxy.AopProxy;
-import myframework.aop.proxy.factory.AopProxyFactory;
-import myframework.aop.proxy.impl.JdkDynamicAopProxy;
+import myframework.aop.framework.proxy.AopProxy;
+import myframework.aop.framework.proxy.factory.AopProxyFactory;
+import myframework.aop.framework.proxy.impl.JdkDynamicAopProxy;
 import myframework.exception.AopConfigException;
 
 /**

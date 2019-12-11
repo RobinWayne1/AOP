@@ -1,6 +1,6 @@
 package myframework.aop.joinpoint;
 
-import myframework.aop.intercept.ProxyMethodInvocation;
+import myframework.aop.framework.proxy.intercept.ProxyMethodInvocation;
 import myframework.exception.AopInvocationException;
 
 /**

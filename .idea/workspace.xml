@@ -7,12 +7,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="222ef8ee-671e-48be-8e9d-e6e1a0e5d98c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/myframework/aop/pointcut/impl/TrueClassFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/myframework/aop/pointcut/impl/TrueMethodMatcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/myframework/aop/pointcut/impl/TruePointcut.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/myframework/aop/pointcut/ClassFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/myframework/aop/pointcut/ClassFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/myframework/aop/pointcut/MethodMatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/myframework/aop/pointcut/MethodMatcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/myframework/aop/advice/AbstractAspectAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/myframework/aop/advice/AbstractAspectAdvice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/myframework/aop/advice/Advice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/myframework/aop/advice/Advice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/myframework/aop/advice/MethodInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/myframework/aop/advice/MethodInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/myframework/aop/advice/impl/AfterAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/myframework/aop/advice/impl/AfterAdvice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/myframework/aop/advice/impl/AroundAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/myframework/aop/advice/impl/AroundAdvice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/myframework/aop/advice/impl/BeforeAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/myframework/aop/advice/impl/BeforeAdvice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/myframework/aop/advice/impl/ExposeInvocationInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/myframework/aop/advice/impl/ExposeInvocationInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/myframework/aop/advised/ProxyCreatorSupport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/myframework/aop/advised/ProxyCreatorSupport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/myframework/aop/intercept/Joinpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/myframework/aop/framework/proxy/intercept/Joinpoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/myframework/aop/intercept/MethodInvocation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/myframework/aop/framework/proxy/intercept/MethodInvocation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/myframework/aop/intercept/ProxyMethodInvocation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/myframework/aop/framework/proxy/intercept/ProxyMethodInvocation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/myframework/aop/intercept/impl/ReflectiveMethodInvocation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/myframework/aop/framework/proxy/impl/ReflectiveMethodInvocation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/myframework/aop/joinpoint/MethodInvocationProceedingJoinPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/myframework/aop/joinpoint/MethodInvocationProceedingJoinPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/myframework/aop/metadata/factory/AspectMetaDataFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/myframework/aop/metadata/factory/AspectMetaDataFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/myframework/aop/pointcut/impl/AspectExpressionPointcut.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/myframework/aop/pointcut/impl/AspectExpressionPointcut.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/myframework/aop/proxy/AopProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/myframework/aop/framework/proxy/AopProxy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/myframework/aop/proxy/factory/AopProxyFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/myframework/aop/framework/proxy/factory/AopProxyFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/myframework/aop/proxy/factory/impl/DefaultAopProxyFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/myframework/aop/framework/proxy/factory/impl/DefaultAopProxyFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/myframework/aop/proxy/impl/JdkDynamicAopProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/myframework/aop/framework/proxy/impl/JdkDynamicAopProxy.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -26,16 +40,18 @@
     <session id="2035229746">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="7" />
+          <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.6" value="1" />
           <entry key="project.open.time.7" value="4" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.open.time.9" value="1" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="class" value="1" />
-          <entry key="java" value="201" />
+          <entry key="java" value="225" />
           <entry key="properties" value="1" />
           <entry key="xml" value="1" />
         </counts>
@@ -43,7 +59,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="1" />
-          <entry key="JAVA" value="201" />
+          <entry key="JAVA" value="225" />
           <entry key="Properties" value="1" />
           <entry key="XML" value="1" />
         </counts>
@@ -51,12 +67,12 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="1" />
-          <entry key="java" value="10103" />
+          <entry key="java" value="10896" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="10103" />
+          <entry key="JAVA" value="10896" />
           <entry key="PLAIN_TEXT" value="1" />
         </counts>
       </usages-collector>
@@ -65,101 +81,77 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/advice/AbstractAspectAdvice.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/framework/proxy/impl/ReflectiveMethodInvocation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="130" column="8" selection-start-line="130" selection-start-column="8" selection-end-line="130" selection-end-column="8" />
-              <folding>
-                <element signature="e#3777#3778#0" expanded="true" />
-                <element signature="e#3863#3864#0" expanded="true" />
-                <element signature="e#1982#1983#0" expanded="true" />
-                <element signature="e#2015#2016#0" expanded="true" />
-                <element signature="e#2071#2072#0" expanded="true" />
-                <element signature="e#2115#2116#0" expanded="true" />
-                <element signature="e#3407#3408#0" expanded="true" />
-                <element signature="e#3435#3436#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/joinpoint/MethodInvocationProceedingJoinPoint.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="34" column="22" lean-forward="true" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
+            <state relative-caret-position="256">
+              <caret line="129" column="19" selection-start-line="129" selection-start-column="19" selection-end-line="129" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#540#541#0" expanded="true" />
-                <element signature="e#577#578#0" expanded="true" />
-                <element signature="e#1046#1047#0" expanded="true" />
-                <element signature="e#1101#1102#0" expanded="true" />
+                <element signature="e#1397#1398#0" expanded="true" />
+                <element signature="e#1448#1449#0" expanded="true" />
+                <element signature="e#1526#1527#0" expanded="true" />
+                <element signature="e#1584#1585#0" expanded="true" />
+                <element signature="e#1686#1687#0" expanded="true" />
+                <element signature="e#1719#1720#0" expanded="true" />
+                <element signature="e#1857#1858#0" expanded="true" />
+                <element signature="e#1894#1895#0" expanded="true" />
+                <element signature="e#2003#2004#0" expanded="true" />
+                <element signature="e#2043#2044#0" expanded="true" />
+                <element signature="e#2160#2161#0" expanded="true" />
+                <element signature="e#2192#2193#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/joinpoint/ProceedingJoinPoint.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/advice/MethodInterceptor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="18" column="49" selection-start-line="18" selection-start-column="49" selection-end-line="18" selection-end-column="49" />
+            <state relative-caret-position="198">
+              <caret line="9" column="47" selection-start-line="9" selection-start-column="47" selection-end-line="9" selection-end-column="47" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/advice/impl/ExposeInvocationInterceptor.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/advice/Advice.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="110">
+              <caret line="5" column="3" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/intercept/MethodInvocation.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/advice/impl/AfterAdvice.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="176">
-              <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+              <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/intercept/Joinpoint.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/framework/proxy/impl/JdkDynamicAopProxy.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/intercept/ProxyMethodInvocation.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="6" column="54" selection-start-line="6" selection-start-column="54" selection-end-line="6" selection-end-column="54" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/intercept/impl/ReflectiveMethodInvocation.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1650">
-              <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+            <state relative-caret-position="946">
+              <caret line="46" column="41" lean-forward="true" selection-start-line="46" selection-start-column="41" selection-end-line="46" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#823#824#0" expanded="true" />
-                <element signature="e#850#851#0" expanded="true" />
-                <element signature="e#928#929#0" expanded="true" />
-                <element signature="e#955#956#0" expanded="true" />
-                <element signature="e#1207#1208#0" expanded="true" />
-                <element signature="e#1243#1244#0" expanded="true" />
+                <element signature="e#1686#1687#0" expanded="true" />
+                <element signature="e#1765#1766#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/myframework/util/AopUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -168,23 +160,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/advisor/factory/ReflectiveAspectAdvisorFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="161" column="31" lean-forward="true" selection-start-line="161" selection-start-column="31" selection-end-line="161" selection-end-column="31" />
+            <state relative-caret-position="3520">
+              <caret line="163" column="25" selection-start-line="163" selection-start-column="25" selection-end-line="163" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/advice/impl/AroundAdvice.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-              <folding>
-                <element signature="e#866#867#0" expanded="true" />
-                <element signature="e#924#925#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -212,17 +191,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/myframework/aop/anntations/Around.java" />
-        <option value="$PROJECT_DIR$/src/main/java/myframework/aop/metadata/factory/AspectMetaDataFactory.java" />
-        <option value="$PROJECT_DIR$/src/main/java/myframework/aop/anntations/BeforeAdvice.java" />
-        <option value="$PROJECT_DIR$/src/main/java/myframework/aop/anntations/Before.java" />
-        <option value="$PROJECT_DIR$/src/main/java/myframework/exception/UnsupprotedOperationException.java" />
-        <option value="$PROJECT_DIR$/src/main/java/myframework/exception/UnsupportedOperationException.java" />
-        <option value="$PROJECT_DIR$/src/main/java/myframework/exception/NotAnAspectException.java" />
-        <option value="$PROJECT_DIR$/src/main/java/aspect/UserServiceAspect.java" />
-        <option value="$PROJECT_DIR$/src/main/java/myframework/core/reader/impl/PropertiesDefinitionReader.java" />
-        <option value="$PROJECT_DIR$/src/main/java/myframework/aop/framework/BeanFactoryAspectAdvisorBuilder.java" />
-        <option value="$PROJECT_DIR$/src/main/java/myframework/aop/advisor/factory/AbstractAdvisorFactory.java" />
         <option value="$PROJECT_DIR$/src/main/java/myframework/aop/proxy/AopProxy.java" />
         <option value="$PROJECT_DIR$/src/main/java/myframework/aop/intercept/Joinpoint.java" />
         <option value="$PROJECT_DIR$/src/main/java/myframework/aop/advised/ProxyCreatorSupport.java" />
@@ -241,7 +209,6 @@
         <option value="$PROJECT_DIR$/src/main/java/myframework/aop/advised/AdvisedSupport.java" />
         <option value="$PROJECT_DIR$/src/main/java/myframework/exception/AopInvocationException.java" />
         <option value="$PROJECT_DIR$/src/main/java/myframework/util/AopUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/myframework/aop/proxy/impl/JdkDynamicAopProxy.java" />
         <option value="$PROJECT_DIR$/src/main/java/myframework/aop/pointcut/ClassFilter.java" />
         <option value="$PROJECT_DIR$/src/main/java/myframework/aop/pointcut/MethodMatcher.java" />
         <option value="$PROJECT_DIR$/src/main/java/myframework/aop/pointcut/Pointcut.java" />
@@ -253,16 +220,28 @@
         <option value="$PROJECT_DIR$/src/main/java/myframework/aop/pointcut/impl/TrueClassFilter.java" />
         <option value="$PROJECT_DIR$/src/main/java/myframework/aop/pointcut/impl/TrueMethodMatcher.java" />
         <option value="$PROJECT_DIR$/src/main/java/myframework/aop/pointcut/impl/TruePointcut.java" />
-        <option value="$PROJECT_DIR$/src/main/java/myframework/aop/advice/MethodInterceptor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/myframework/aop/advice/impl/AroundAdvice.java" />
         <option value="$PROJECT_DIR$/src/main/java/myframework/aop/advisor/factory/ReflectiveAspectAdvisorFactory.java" />
-        <option value="$PROJECT_DIR$/src/main/java/myframework/aop/advice/impl/ExposeInvocationInterceptor.java" />
         <option value="$PROJECT_DIR$/src/main/java/myframework/aop/intercept/ProxyMethodInvocation.java" />
-        <option value="$PROJECT_DIR$/src/main/java/myframework/aop/intercept/impl/ReflectiveMethodInvocation.java" />
         <option value="$PROJECT_DIR$/src/main/java/myframework/aop/intercept/MethodInvocation.java" />
         <option value="$PROJECT_DIR$/src/main/java/myframework/aop/joinpoint/MethodInvocationProceedingJoinPoint.java" />
         <option value="$PROJECT_DIR$/src/main/java/myframework/aop/joinpoint/ProceedingJoinPoint.java" />
+        <option value="$PROJECT_DIR$/src/main/java/myframework/aop/pointcut/impl/AspectExpressionPointcut.java" />
         <option value="$PROJECT_DIR$/src/main/java/myframework/aop/advice/AbstractAspectAdvice.java" />
+        <option value="$PROJECT_DIR$/src/main/java/myframework/aop/advice/impl/AroundAdvice.java" />
+        <option value="$PROJECT_DIR$/src/main/java/myframework/aop/advice/impl/ExposeInvocationInterceptor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/myframework/aop/advice/impl/BeforeAdvice.java" />
+        <option value="$PROJECT_DIR$/src/main/java/myframework/aop/advice/MethodInterceptor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/myframework/aop/advice/impl/AfterAdvice.java" />
+        <option value="$PROJECT_DIR$/src/main/java/myframework/aop/metadata/factory/AspectMetaDataFactory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/myframework/aop/intercept/impl/ReflectiveMethodInvocation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/myframework/aop/proxy/intercept/impl/ReflectiveMethodInvocation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/myframework/aop/proxy/impl/JdkDynamicAopProxy.java" />
+        <option value="$PROJECT_DIR$/src/main/java/myframework/aop/proxy/impl/ReflectiveMethodInvocation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/myframework/aop/framework/proxy/ProxyMethodInvocation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/myframework/aop/framework/proxy/intercept/ProxyMethodInvocation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/myframework/aop/framework/proxy/impl/JdkDynamicAopProxy.java" />
+        <option value="$PROJECT_DIR$/src/main/java/myframework/aop/framework/proxy/impl/ReflectiveMethodInvocation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/myframework/aop/advice/Advice.java" />
       </list>
     </option>
   </component>
@@ -293,10 +272,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="667" />
-    <option name="y" value="101" />
-    <option name="width" value="1245" />
-    <option name="height" value="710" />
+    <option name="x" value="-80" />
+    <option name="y" value="100" />
+    <option name="width" value="1940" />
+    <option name="height" value="1105" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -365,48 +344,6 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="myframework" type="462c0819:PsiDirectoryNode" />
               <item name="aop" type="462c0819:PsiDirectoryNode" />
-              <item name="advice" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AOP" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AOP" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="myframework" type="462c0819:PsiDirectoryNode" />
-              <item name="aop" type="462c0819:PsiDirectoryNode" />
-              <item name="advice" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AOP" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AOP" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="myframework" type="462c0819:PsiDirectoryNode" />
-              <item name="aop" type="462c0819:PsiDirectoryNode" />
-              <item name="advised" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AOP" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AOP" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="myframework" type="462c0819:PsiDirectoryNode" />
-              <item name="aop" type="462c0819:PsiDirectoryNode" />
-              <item name="advisor" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AOP" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AOP" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="myframework" type="462c0819:PsiDirectoryNode" />
-              <item name="aop" type="462c0819:PsiDirectoryNode" />
-              <item name="advisor" type="462c0819:PsiDirectoryNode" />
               <item name="factory" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -417,7 +354,7 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="myframework" type="462c0819:PsiDirectoryNode" />
               <item name="aop" type="462c0819:PsiDirectoryNode" />
-              <item name="advisor" type="462c0819:PsiDirectoryNode" />
+              <item name="factory" type="462c0819:PsiDirectoryNode" />
               <item name="impl" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -438,7 +375,8 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="myframework" type="462c0819:PsiDirectoryNode" />
               <item name="aop" type="462c0819:PsiDirectoryNode" />
-              <item name="intercept" type="462c0819:PsiDirectoryNode" />
+              <item name="framework" type="462c0819:PsiDirectoryNode" />
+              <item name="proxy" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="AOP" type="b2602c69:ProjectViewProjectNode" />
@@ -448,7 +386,8 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="myframework" type="462c0819:PsiDirectoryNode" />
               <item name="aop" type="462c0819:PsiDirectoryNode" />
-              <item name="intercept" type="462c0819:PsiDirectoryNode" />
+              <item name="framework" type="462c0819:PsiDirectoryNode" />
+              <item name="proxy" type="462c0819:PsiDirectoryNode" />
               <item name="impl" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -466,50 +405,7 @@
               <item name="AOP" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="myframework" type="462c0819:PsiDirectoryNode" />
-              <item name="aop" type="462c0819:PsiDirectoryNode" />
-              <item name="pointcut" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AOP" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AOP" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="myframework" type="462c0819:PsiDirectoryNode" />
-              <item name="aop" type="462c0819:PsiDirectoryNode" />
-              <item name="pointcut" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AOP" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AOP" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="myframework" type="462c0819:PsiDirectoryNode" />
-              <item name="exception" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AOP" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AOP" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AOP" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AOP" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AOP" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AOP" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="AOP" type="b2602c69:ProjectViewProjectNode" />
@@ -531,10 +427,10 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="method&#9;FILE&#9;file://D:/JSP/AOP/src/main/java/myframework/aop/intercept/MethodInvocation.java&#10;instan&#9;PSI&#9;JAVA://myframework.aop.advisor.impl.InstantiationModelAwarePointcutAdvisorImpl&#10;around&#9;PSI&#9;JAVA://myframework.aop.advice.impl.AroundAdvice&#10;UnsupportedOperationException&#9;FILE&#9;jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/UnsupportedOperationException.java&#10;createproxy&#9;PSI&#9;JAVA://myframework.aop.proxy.factory.AopProxyFactory#createAopProxy&#10;POINTCUT&#9;FILE&#9;file://D:/JSP/AOP/src/main/java/myframework/aop/pointcut/PointCut.java&#10;collections&#9;PSI&#9;JAVA://java.util.Collections&#10;pointadvisor&#9;FILE&#9;file://D:/JSP/AOP/src/main/java/myframework/aop/advisor/impl/PointcutAdvisor.java&#10;AspectMetaDataFactory&#9;FILE&#9;file://D:/JSP/AOP/src/main/java/myframework/aop/metadata/factory/AspectMetaDataFactory.java&#10;getAdvisor&#9;PSI&#9;JAVA://myframework.aop.advisor.factory.AspectAdvisorFactory#getAdvisor&#10;getAdvic&#9;PSI&#9;JAVA://myframework.aop.advisor.Advisor#getAdvice&#10;aspectmetad&#9;FILE&#9;file://D:/JSP/AOP/src/main/java/myframework/aop/metadata/AspectMetaData.java&#10;pack&#9;FILE&#9;jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/Package.java&#10;package&#9;PSI&#9;JAVA://java.lang.Package&#10;aspectmeta&#9;FILE&#9;file://D:/JSP/AOP/src/main/java/myframework/aop/metadata/factory/AspectMetaDataFactory.java&#10;advisor&#9;FILE&#9;file://D:/JSP/AOP/src/main/java/myframework/aop/advisor/factory/ReflectiveAspectAdvisorFactory.java&#10;bean&#9;FILE&#9;file://D:/JSP/AOP/src/main/java/myframework/servicefactory/processor/BeanPostProcessor.java&#10;compoundEnumeration&#9;PSI&#9;JAVA://sun.misc.CompoundEnumeration" />
+    <property name="SearchEverywhereHistoryKey" value="refl&#9;PSI&#9;JAVA://myframework.aop.intercept.impl.ReflectiveMethodInvocation&#10;refle&#9;FILE&#9;file://D:/JSP/AOP/src/main/java/myframework/aop/advisor/factory/ReflectiveAspectAdvisorFactory.java&#10;method&#9;FILE&#9;file://D:/JSP/AOP/src/main/java/myframework/aop/intercept/MethodInvocation.java&#10;instan&#9;PSI&#9;JAVA://myframework.aop.advisor.impl.InstantiationModelAwarePointcutAdvisorImpl&#10;around&#9;PSI&#9;JAVA://myframework.aop.advice.impl.AroundAdvice&#10;UnsupportedOperationException&#9;FILE&#9;jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/UnsupportedOperationException.java&#10;createproxy&#9;PSI&#9;JAVA://myframework.aop.proxy.factory.AopProxyFactory#createAopProxy&#10;POINTCUT&#9;FILE&#9;file://D:/JSP/AOP/src/main/java/myframework/aop/pointcut/PointCut.java&#10;collections&#9;PSI&#9;JAVA://java.util.Collections&#10;pointadvisor&#9;FILE&#9;file://D:/JSP/AOP/src/main/java/myframework/aop/advisor/impl/PointcutAdvisor.java&#10;AspectMetaDataFactory&#9;FILE&#9;file://D:/JSP/AOP/src/main/java/myframework/aop/metadata/factory/AspectMetaDataFactory.java&#10;getAdvisor&#9;PSI&#9;JAVA://myframework.aop.advisor.factory.AspectAdvisorFactory#getAdvisor&#10;getAdvic&#9;PSI&#9;JAVA://myframework.aop.advisor.Advisor#getAdvice&#10;aspectmetad&#9;FILE&#9;file://D:/JSP/AOP/src/main/java/myframework/aop/metadata/AspectMetaData.java&#10;pack&#9;FILE&#9;jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/Package.java&#10;package&#9;PSI&#9;JAVA://java.lang.Package&#10;aspectmeta&#9;FILE&#9;file://D:/JSP/AOP/src/main/java/myframework/aop/metadata/factory/AspectMetaDataFactory.java&#10;advisor&#9;FILE&#9;file://D:/JSP/AOP/src/main/java/myframework/aop/advisor/factory/ReflectiveAspectAdvisorFactory.java&#10;bean&#9;FILE&#9;file://D:/JSP/AOP/src/main/java/myframework/servicefactory/processor/BeanPostProcessor.java&#10;compoundEnumeration&#9;PSI&#9;JAVA://sun.misc.CompoundEnumeration" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1575992289758" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1576081699341" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../spring-framework" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -716,18 +612,20 @@
       <workItem from="1575770009059" duration="7913000" />
       <workItem from="1575783490356" duration="10958000" />
       <workItem from="1575876213131" duration="23825000" />
-      <workItem from="1575965769384" duration="19134000" />
+      <workItem from="1575965769384" duration="19781000" />
+      <workItem from="1576031281774" duration="6460000" />
+      <workItem from="1576081152357" duration="900000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="261605000" />
+    <option name="totallyTimeSpent" value="269612000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49853373" visible="true" weight="0.054959785" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49853373" visible="true" weight="0.27412868" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="JRebel" order="2" sideWeight="0.5014663" side_tool="true" weight="0.27345845" />
       <window_info id="Image Layers" order="3" />
@@ -899,74 +797,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/advisor/factory/AbstractAdvisorFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/metadata/AspectMetaData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="35" column="35" selection-start-line="35" selection-start-column="35" selection-end-line="35" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#652#653#0" expanded="true" />
-            <element signature="e#685#686#0" expanded="true" />
-            <element signature="e#729#730#0" expanded="true" />
-            <element signature="e#763#764#0" expanded="true" />
-            <element signature="e#830#831#0" expanded="true" />
-            <element signature="e#872#873#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/framework/BeanFactoryAspectAdvisorBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1342">
-          <caret line="72" column="9" lean-forward="true" selection-start-line="72" selection-start-column="9" selection-end-line="72" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/Arrays.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="3811" column="8" selection-start-line="3811" selection-start-column="8" selection-end-line="3811" selection-end-column="8" />
-          <folding>
-            <element signature="e#177013#177014#0" expanded="true" />
-            <element signature="e#177054#177055#0" expanded="true" />
-            <element signature="e#177353#177354#0" expanded="true" />
-            <element signature="e#177410#177411#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/joinpoint/JoinPoint.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/UnsupportedOperationException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="37" column="20" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
-          <folding>
-            <element signature="e#925#926#0" expanded="true" />
-            <element signature="e#955#956#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/exception/BeanInstantiateException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/myframework/exception/UnknowedOperationException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
@@ -981,7 +811,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/proxy/factory/AopProxyFactory.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/framework/proxy/factory/AopProxyFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="17" column="75" selection-start-line="17" selection-start-column="75" selection-end-line="17" selection-end-column="75" />
@@ -999,10 +829,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="407" column="19" selection-start-line="407" selection-start-column="19" selection-end-line="407" selection-end-column="19" />
-          <folding>
-            <element signature="e#6283#6284#0" expanded="true" />
-            <element signature="e#6351#6352#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1013,7 +839,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/proxy/factory/impl/DefaultAopProxyFactory.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/framework/proxy/factory/impl/DefaultAopProxyFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
           <caret line="21" column="25" lean-forward="true" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
@@ -1030,7 +856,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/proxy/AopProxy.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/framework/proxy/AopProxy.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
           <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
@@ -1087,23 +913,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/exception/AopInvocationException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="44" selection-start-line="6" selection-start-column="44" selection-end-line="6" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/proxy/impl/JdkDynamicAopProxy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="43" column="7" selection-start-line="43" selection-start-column="7" selection-end-line="43" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/pointcut/ClassFilter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
@@ -1115,20 +924,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
           <caret line="7" column="23" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/pointcut/impl/AspectExpressionPointcut.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="16" column="79" selection-start-line="16" selection-start-column="79" selection-end-line="16" selection-end-column="79" />
-          <folding>
-            <element signature="e#1108#1109#0" expanded="true" />
-            <element signature="e#1154#1155#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1143,19 +938,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/util/AopUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="828">
-          <caret line="60" column="62" lean-forward="true" selection-start-line="60" selection-start-column="62" selection-end-line="60" selection-end-column="62" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1163,29 +945,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#675#676#0" expanded="true" />
-            <element signature="e#711#712#0" expanded="true" />
-            <element signature="e#765#766#0" expanded="true" />
-            <element signature="e#805#806#0" expanded="true" />
-            <element signature="e#853#854#0" expanded="true" />
-            <element signature="e#889#890#0" expanded="true" />
-            <element signature="e#469#470#0" expanded="true" />
-            <element signature="e#496#497#0" expanded="true" />
-            <element signature="e#600#601#0" expanded="true" />
-            <element signature="e#627#628#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/framework/AbstractAdvisorAutoProxyCreator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="109" column="4" selection-start-line="109" selection-start-column="4" selection-end-line="109" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1193,9 +952,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="92">
           <caret line="17" column="7" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1203,9 +959,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
           <caret line="16" column="7" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1213,24 +966,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
           <caret line="12" column="3" lean-forward="true" selection-start-line="12" selection-start-column="3" selection-end-line="14" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/advice/MethodInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" column="14" lean-forward="true" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/advice/impl/AfterAdvice.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="14" column="45" selection-start-line="14" selection-start-column="45" selection-end-line="14" selection-end-column="45" />
-          <folding>
-            <element signature="e#766#767#0" expanded="true" />
-            <element signature="e#793#794#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1248,91 +983,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/framework/AnnotationAwareAutoProxyCreator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-204">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/advice/impl/AroundAdvice.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding>
-            <element signature="e#866#867#0" expanded="true" />
-            <element signature="e#924#925#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/advisor/impl/InstantiationModelAwarePointcutAdvisorImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="854">
           <caret line="53" column="40" lean-forward="true" selection-start-line="53" selection-start-column="40" selection-end-line="53" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/advice/impl/ExposeInvocationInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/intercept/Joinpoint.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/advisor/factory/ReflectiveAspectAdvisorFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="161" column="31" lean-forward="true" selection-start-line="161" selection-start-column="31" selection-end-line="161" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/intercept/impl/ReflectiveMethodInvocation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1650">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#823#824#0" expanded="true" />
-            <element signature="e#850#851#0" expanded="true" />
-            <element signature="e#928#929#0" expanded="true" />
-            <element signature="e#955#956#0" expanded="true" />
-            <element signature="e#1207#1208#0" expanded="true" />
-            <element signature="e#1243#1244#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/intercept/MethodInvocation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/intercept/ProxyMethodInvocation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="6" column="54" selection-start-line="6" selection-start-column="54" selection-end-line="6" selection-end-column="54" />
         </state>
       </provider>
     </entry>
@@ -1343,33 +997,226 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/joinpoint/MethodInvocationProceedingJoinPoint.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/pointcut/impl/AspectExpressionPointcut.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="34" column="22" lean-forward="true" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
+        <state relative-caret-position="2706">
+          <caret line="141" column="13" selection-start-line="141" selection-start-column="13" selection-end-line="141" selection-end-column="13" />
+          <folding>
+            <element signature="e#1108#1109#0" expanded="true" />
+            <element signature="e#1154#1155#0" expanded="true" />
+            <element signature="e#2626#2627#0" expanded="true" />
+            <element signature="e#2659#2660#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/IllegalAccessException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="58" column="13" selection-start-line="58" selection-start-column="13" selection-end-line="58" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/reflect/InvocationTargetException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="41" column="13" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/IllegalArgumentException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="35" column="6" selection-start-line="35" selection-start-column="6" selection-end-line="35" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/exception/AopInvocationException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="412">
+          <caret line="21" column="11" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
+          <folding>
+            <element signature="e#520#521#0" expanded="true" />
+            <element signature="e#553#554#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/advice/impl/AroundAdvice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="36" column="24" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
+          <folding>
+            <element signature="e#866#867#0" expanded="true" />
+            <element signature="e#893#894#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/advice/impl/ExposeInvocationInterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="36" column="44" lean-forward="true" selection-start-line="36" selection-start-column="44" selection-end-line="36" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#540#541#0" expanded="true" />
-            <element signature="e#577#578#0" expanded="true" />
-            <element signature="e#1046#1047#0" expanded="true" />
-            <element signature="e#1101#1102#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/advice/impl/BeforeAdvice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="24" column="24" lean-forward="true" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
+          <folding>
+            <element signature="e#766#767#0" expanded="true" />
+            <element signature="e#793#794#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/framework/AnnotationAwareAutoProxyCreator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/metadata/factory/AspectMetaDataFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="726">
+          <caret line="41" column="16" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/joinpoint/MethodInvocationProceedingJoinPoint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-206">
+          <caret line="34" column="22" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/advice/AbstractAspectAdvice.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="130" column="8" selection-start-line="130" selection-start-column="8" selection-end-line="130" selection-end-column="8" />
+        <state relative-caret-position="3322">
+          <caret line="174" column="35" selection-start-line="174" selection-start-column="35" selection-end-line="174" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/framework/AbstractAdvisorAutoProxyCreator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2596">
+          <caret line="118" column="39" selection-start-line="118" selection-start-column="39" selection-end-line="118" selection-end-column="39" />
           <folding>
-            <element signature="e#3777#3778#0" expanded="true" />
-            <element signature="e#3863#3864#0" expanded="true" />
-            <element signature="e#1982#1983#0" expanded="true" />
-            <element signature="e#2015#2016#0" expanded="true" />
-            <element signature="e#2071#2072#0" expanded="true" />
-            <element signature="e#2115#2116#0" expanded="true" />
-            <element signature="e#3407#3408#0" expanded="true" />
-            <element signature="e#3435#3436#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/framework/BeanFactoryAspectAdvisorBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1342">
+          <caret line="68" column="9" selection-start-line="68" selection-start-column="9" selection-end-line="68" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/advisor/factory/ReflectiveAspectAdvisorFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3520">
+          <caret line="163" column="25" selection-start-line="163" selection-start-column="25" selection-end-line="163" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/advice/MethodInterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="47" selection-start-line="9" selection-start-column="47" selection-end-line="9" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/advice/impl/AfterAdvice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/advice/Advice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="5" column="3" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/framework/proxy/impl/JdkDynamicAopProxy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="946">
+          <caret line="46" column="41" lean-forward="true" selection-start-line="46" selection-start-column="41" selection-end-line="46" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1686#1687#0" expanded="true" />
+            <element signature="e#1765#1766#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/util/AopUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/framework/proxy/intercept/MethodInvocation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/framework/proxy/intercept/Joinpoint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/framework/proxy/intercept/ProxyMethodInvocation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/myframework/aop/framework/proxy/impl/ReflectiveMethodInvocation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="129" column="19" selection-start-line="129" selection-start-column="19" selection-end-line="129" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1397#1398#0" expanded="true" />
+            <element signature="e#1448#1449#0" expanded="true" />
+            <element signature="e#1526#1527#0" expanded="true" />
+            <element signature="e#1584#1585#0" expanded="true" />
+            <element signature="e#1686#1687#0" expanded="true" />
+            <element signature="e#1719#1720#0" expanded="true" />
+            <element signature="e#1857#1858#0" expanded="true" />
+            <element signature="e#1894#1895#0" expanded="true" />
+            <element signature="e#2003#2004#0" expanded="true" />
+            <element signature="e#2043#2044#0" expanded="true" />
+            <element signature="e#2160#2161#0" expanded="true" />
+            <element signature="e#2192#2193#0" expanded="true" />
           </folding>
         </state>
       </provider>

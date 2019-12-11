@@ -1,4 +1,4 @@
-package myframework.aop.intercept;
+package myframework.aop.framework.proxy.intercept;
 
 import java.lang.reflect.Method;
 

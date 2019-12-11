@@ -1,6 +1,6 @@
 package myframework.aop.advice;
 
-import myframework.aop.intercept.MethodInvocation;
+import myframework.aop.framework.proxy.intercept.MethodInvocation;
 
 /**
  * 所有增强方法必须实现该接口
@@ -9,5 +9,5 @@ import myframework.aop.intercept.MethodInvocation;
  */
 public interface MethodInterceptor extends Advice
 {
-    Object invoke(MethodInvocation invocation)throws Throwable;
+    Object invoke(MethodInvocation mi)throws Throwable;
 }

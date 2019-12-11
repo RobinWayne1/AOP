@@ -1,7 +1,7 @@
 package myframework.aop.advice.impl;
 
 import myframework.aop.advice.MethodInterceptor;
-import myframework.aop.intercept.MethodInvocation;
+import myframework.aop.framework.proxy.intercept.MethodInvocation;
 import myframework.exception.AopInvocationException;
 
 /**
@@ -35,10 +35,11 @@ public class ExposeInvocationInterceptor implements MethodInterceptor
      * 即当所有线程都对某资源有需要,但是此资源又没有共享的必要性的时候,使用ThreadLocal.
      *
      * 为何不直接在invokeAdviceMethod()里传一个mi上来???
+     * 答案看调用者
      */
     private static final ThreadLocal<MethodInvocation> INVOCATION_THREAD_LOCAL = new ThreadLocal<>();
 
-    public static MethodInvocation currentInvcation()
+    public static MethodInvocation currentInvocation()
     {
         MethodInvocation mi=INVOCATION_THREAD_LOCAL.get();
         if (mi==null)
@@ -57,6 +58,7 @@ public class ExposeInvocationInterceptor implements MethodInterceptor
             return mi.proceed();
         }
         finally {
+            //ThreadLocal的set null
             INVOCATION_THREAD_LOCAL.set(oldInvocation);
         }
     }

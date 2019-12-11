@@ -1,4 +1,4 @@
-package myframework.aop.proxy;
+package myframework.aop.framework.proxy;
 
 /**
  * @author Robin

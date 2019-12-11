@@ -1,7 +1,7 @@
-package myframework.aop.proxy.factory;
+package myframework.aop.framework.proxy.factory;
 
 import myframework.aop.advised.AdvisedSupport;
-import myframework.aop.proxy.AopProxy;
+import myframework.aop.framework.proxy.AopProxy;
 import myframework.exception.AopConfigException;
 
 /**

@@ -1,4 +1,4 @@
-package myframework.aop.intercept;
+package myframework.aop.framework.proxy.intercept;
 
 /**
  * 拦截调用时的连接点,即调用proceed()可以继续执行拦截调用

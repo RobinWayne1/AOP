@@ -3,7 +3,7 @@ package myframework.aop.advice.impl;
 import myframework.aop.advice.AbstractAspectAdvice;
 import myframework.aop.advice.MethodInterceptor;
 import myframework.aop.factory.AspectInstanceFactory;
-import myframework.aop.intercept.MethodInvocation;
+import myframework.aop.framework.proxy.intercept.MethodInvocation;
 import myframework.aop.pointcut.impl.AspectExpressionPointcut;
 
 import java.lang.reflect.Method;
@@ -31,8 +31,9 @@ public class AroundAdvice extends AbstractAspectAdvice implements MethodIntercep
     }
 
     @Override
-    public Object invoke(MethodInvocation invocation)
+    public Object invoke(MethodInvocation mi)
     {
-        return null;
+
+        return invokeAdviceMethod();
     }
 }

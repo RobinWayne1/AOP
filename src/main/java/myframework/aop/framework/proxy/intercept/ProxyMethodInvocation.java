@@ -1,4 +1,5 @@
-package myframework.aop.intercept;
+package myframework.aop.framework.proxy.intercept;
+
 
 /**
  * @author Robin

@@ -1,17 +1,15 @@
-package myframework.aop.intercept.impl;
+package myframework.aop.framework.proxy.impl;
 
 
-import com.sun.istack.internal.Nullable;
 import myframework.aop.advice.MethodInterceptor;
-import myframework.aop.advised.AdvisedSupport;
-import myframework.aop.intercept.Joinpoint;
-import myframework.aop.intercept.MethodInvocation;
-import myframework.aop.intercept.ProxyMethodInvocation;
+import myframework.aop.framework.proxy.intercept.ProxyMethodInvocation;
+import myframework.util.AopUtil;
 
-import java.lang.reflect.InvocationHandler;
+
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author Robin
@@ -20,7 +18,12 @@ import java.util.Map;
 public class ReflectiveMethodInvocation implements ProxyMethodInvocation
 {
 
-    private Map<String, Object> userAttributes;
+    private Map<String, Object> userAttributes = new ConcurrentHashMap<>(16);
+
+    /**
+     * 控制拦截器链的index
+     */
+    private int currentInterceptorIndex = -1;
 
     //代理对象
     private final Object proxy;
@@ -35,13 +38,12 @@ public class ReflectiveMethodInvocation implements ProxyMethodInvocation
 
     private final List<MethodInterceptor> chain;
 
-    private  Object[] args;
+    private Object[] args;
 
     private final Method targetMethod;
 
-    protected ReflectiveMethodInvocation(Map<String, Object> userAttributes, Object proxy, Object target, Class<?> targetClass, List<MethodInterceptor> chain, Object[] args, Method targetMethod)
+    protected ReflectiveMethodInvocation(Object proxy, Object target, Class<?> targetClass, List<MethodInterceptor> chain, Object[] args, Method targetMethod)
     {
-        this.userAttributes = userAttributes;
         this.proxy = proxy;
         this.target = target;
         this.targetClass = targetClass;
@@ -65,7 +67,7 @@ public class ReflectiveMethodInvocation implements ProxyMethodInvocation
     @Override
     public Object setAttribute(String key, Object value)
     {
-        return this.userAttributes.put(key,value);
+        return this.userAttributes.put(key, value);
     }
 
     /**
@@ -87,7 +89,7 @@ public class ReflectiveMethodInvocation implements ProxyMethodInvocation
     @Override
     public void setArguments(Object[] arguments)
     {
-        this.args=arguments;
+        this.args = arguments;
     }
 
     /**
@@ -112,12 +114,25 @@ public class ReflectiveMethodInvocation implements ProxyMethodInvocation
         return this.args;
     }
 
+    /**
+     *  拦截器链的控制
+     *  调用拦截器链的invoke
+     * @return
+     * @throws Throwable
+     */
     @Override
     public Object proceed() throws Throwable
     {
-        //拦截器链的控制
-        //调用拦截器链的invoke
-        return null;
+        if(this.currentInterceptorIndex==this.chain.size() - 1)
+        {
+            AopUtil.invokeJoinpointUsingReflection(this.target,this.targetMethod,this.args);
+        }
+        MethodInterceptor currentMethodInterceptor=this.chain.get(++this.currentInterceptorIndex);
+
+        /**
+         * 链执行开始
+         */
+        return currentMethodInterceptor.invoke(this);
     }
 
 

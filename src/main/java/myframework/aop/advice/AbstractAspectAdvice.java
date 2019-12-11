@@ -2,9 +2,8 @@ package myframework.aop.advice;
 
 import myframework.aop.advice.impl.ExposeInvocationInterceptor;
 import myframework.aop.factory.AspectInstanceFactory;
-import myframework.aop.intercept.Joinpoint;
-import myframework.aop.intercept.MethodInvocation;
-import myframework.aop.intercept.ProxyMethodInvocation;
+import myframework.aop.framework.proxy.intercept.MethodInvocation;
+import myframework.aop.framework.proxy.intercept.ProxyMethodInvocation;
 import myframework.aop.joinpoint.JoinPoint;
 import myframework.aop.joinpoint.MethodInvocationProceedingJoinPoint;
 import myframework.aop.joinpoint.ProceedingJoinPoint;
@@ -38,7 +37,7 @@ public class AbstractAspectAdvice implements Advice
      */
     private final Class<?>[] parameterTypes;
 
-    protected Method aspectJAdviceMethod;
+    protected Method aspectAdviceMethod;
 
     /**
      * 用作getJoinPointMatch方法,暂时不清楚有什么用
@@ -61,35 +60,41 @@ public class AbstractAspectAdvice implements Advice
     private int joinPointArgumentIndex = -1;
 
     public AbstractAspectAdvice(
-            Method aspectJAdviceMethod, AspectExpressionPointcut pointcut, AspectInstanceFactory aspectInstanceFactory)
+            Method aspectAdviceMethod, AspectExpressionPointcut pointcut, AspectInstanceFactory aspectInstanceFactory)
     {
-        this.declaringClass = aspectJAdviceMethod.getDeclaringClass();
-        this.methodName = aspectJAdviceMethod.getName();
-        this.parameterTypes = aspectJAdviceMethod.getParameterTypes();
-        this.aspectJAdviceMethod = aspectJAdviceMethod;
+        this.declaringClass = aspectAdviceMethod.getDeclaringClass();
+        this.methodName = aspectAdviceMethod.getName();
+        this.parameterTypes = aspectAdviceMethod.getParameterTypes();
+        this.aspectAdviceMethod = aspectAdviceMethod;
         this.pointcut = pointcut;
         this.aspectInstanceFactory = aspectInstanceFactory;
+    }
+
+    protected JoinPoint getJoinPoint()
+    {
+        return currentJoinPoint();
     }
 
     /**
      * 知道为什么不用传入mi的方法了,他用static修饰,本意应该是想让用户使用这个方法,而让用户使用怎么可能让其传入
      * 一个mi,所以,就这样
+     *
      * @param mi
      * @return
      */
     public static JoinPoint currentJoinPoint()
     {
-        MethodInvocation mi= ExposeInvocationInterceptor.currentInvcation();
-        if(!(mi instanceof ProxyMethodInvocation))
+        MethodInvocation mi = ExposeInvocationInterceptor.currentInvocation();
+        if (!(mi instanceof ProxyMethodInvocation))
         {
-            throw  new UnknowedOperationException(mi.getClass()+"is not a is not a framework ProxyMethodInvocation");
+            throw new UnknowedOperationException(mi.getClass() + "is not a is not a framework ProxyMethodInvocation");
         }
-        ProxyMethodInvocation pmi=(ProxyMethodInvocation) mi;
-        JoinPoint jp=(JoinPoint)pmi.getAttribute(JOIN_POINT_KEY);
-        if(jp==null)
+        ProxyMethodInvocation pmi = (ProxyMethodInvocation) mi;
+        JoinPoint jp = (JoinPoint) pmi.getAttribute(JOIN_POINT_KEY);
+        if (jp == null)
         {
-            jp=new MethodInvocationProceedingJoinPoint(pmi);
-            pmi.setAttribute(JOIN_POINT_KEY,jp);
+            jp = new MethodInvocationProceedingJoinPoint(pmi);
+            pmi.setAttribute(JOIN_POINT_KEY, jp);
         }
         return jp;
     }
@@ -102,14 +107,14 @@ public class AbstractAspectAdvice implements Advice
     protected Object[] argBinding(JoinPoint jp)
     {
         calculateArgumentBindings();
-        Object []adviceInvocationArgs=new Object[this.parameterTypes.length];
-        int numBound=0;
-        if(this.joinPointArgumentIndex!=-1)
+        Object[] adviceInvocationArgs = new Object[this.parameterTypes.length];
+        int numBound = 0;
+        if (this.joinPointArgumentIndex != -1)
         {
-            adviceInvocationArgs[joinPointArgumentIndex]=jp;
+            adviceInvocationArgs[joinPointArgumentIndex] = jp;
             numBound++;
         }
-        if(numBound!=this.parameterTypes.length)
+        if (numBound != this.parameterTypes.length)
         {
             throw new AopInvocationException("Unknown type advice parameters to bind");
         }
@@ -123,12 +128,32 @@ public class AbstractAspectAdvice implements Advice
      */
     protected Object invokeAdviceMethod()
     {
-        return invokeAdviceMethodWithGivenArgs(argBinding(currentJoinPoint()));
+        return invokeAdviceMethodWithGivenArgs(argBinding(getJoinPoint()));
     }
 
+    /**
+     * 这里调用的是切面增强方法,所以是从AspectInstanceFactory中取出bean,而不需要MethodInvocation的target
+     *
+     * @param args
+     * @return
+     */
     protected Object invokeAdviceMethodWithGivenArgs(Object[] args)
     {
-        
+        try
+        {
+            this.aspectAdviceMethod.setAccessible(true);
+            return this.aspectAdviceMethod.invoke(this.aspectInstanceFactory.getAspectInstance(),args);
+        }
+        catch (IllegalArgumentException ex) {
+            throw new AopInvocationException("Mismatch on arguments to advice method [" +
+                    this.aspectAdviceMethod + "]; pointcut expression [" +
+                    this.pointcut.getExpression() + "]", ex);
+        }
+        catch(ReflectiveOperationException ex)
+        {
+            throw new AopInvocationException(ex.getMessage(),ex);
+        }
+
     }
 
     public String getAspectName()
@@ -154,7 +179,7 @@ public class AbstractAspectAdvice implements Advice
             return;
         }
         int numUnboundArgs = this.parameterTypes.length;
-        Class<?>[] parameterTypes = this.aspectJAdviceMethod.getParameterTypes();
+        Class<?>[] parameterTypes = this.aspectAdviceMethod.getParameterTypes();
         //判断JoinPoint参数存在顺便setFlag
         if (maybeBindJoinPoint(parameterTypes[0]) || maybeBindProceedingJoinPoint(parameterTypes[0]))
         {
@@ -162,7 +187,7 @@ public class AbstractAspectAdvice implements Advice
             numUnboundArgs--;
         }
         //暂不支持其他参数绑定,这里spring绝对不只是判断是否为0,所以这里写法应该是有误的,不过不影响
-        if(numUnboundArgs!=0)
+        if (numUnboundArgs != 0)
         {
             throw new AopInvocationException("Unknown type advice parameters to bind");
         }

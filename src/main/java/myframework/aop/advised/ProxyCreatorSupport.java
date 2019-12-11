@@ -1,8 +1,8 @@
 package myframework.aop.advised;
 
-import myframework.aop.proxy.AopProxy;
-import myframework.aop.proxy.factory.AopProxyFactory;
-import myframework.aop.proxy.factory.impl.DefaultAopProxyFactory;
+import myframework.aop.framework.proxy.AopProxy;
+import myframework.aop.framework.proxy.factory.AopProxyFactory;
+import myframework.aop.framework.proxy.factory.impl.DefaultAopProxyFactory;
 
 /**
  * 提供AopProxyFactory,并操作创建AopProxy实例

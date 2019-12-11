@@ -39,7 +39,7 @@ public class AspectMetaDataFactory
             for (Class aac : ASPECTJ_ANNOTATION_CLASSES)
             {
                 Annotation annotation = method.getAnnotation(aac);
-                //只是做了初步的过滤(没有注解的方法的过滤)
+
                 if (annotation != null)
                 {
                     adviceMethodInfoMap.put(method, annotation);
