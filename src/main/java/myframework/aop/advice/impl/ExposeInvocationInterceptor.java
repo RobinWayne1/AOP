@@ -2,6 +2,7 @@ package myframework.aop.advice.impl;
 
 import myframework.aop.advice.MethodInterceptor;
 import myframework.aop.framework.proxy.intercept.MethodInvocation;
+import myframework.core.order.Ordered;
 import myframework.exception.AopInvocationException;
 
 /**
@@ -13,7 +14,7 @@ import myframework.exception.AopInvocationException;
  * @author Robin
  * @date 2019/12/7 -16:59
  */
-public class ExposeInvocationInterceptor implements MethodInterceptor
+public class ExposeInvocationInterceptor implements MethodInterceptor, Ordered
 {
     public static final ExposeInvocationInterceptor INSATNCE = new ExposeInvocationInterceptor();
 
@@ -61,5 +62,27 @@ public class ExposeInvocationInterceptor implements MethodInterceptor
             //ThreadLocal的set null
             INVOCATION_THREAD_LOCAL.set(oldInvocation);
         }
+    }
+
+    /**
+     * Get the order value of this object.
+     * <p>Higher values are interpreted as lower priority. As a consequence,
+     * the object with the lowest value has the highest priority (somewhat
+     * analogous to Servlet {@code load-on-startup} values).
+     * <p>Same order values will result in arbitrary sort positions for the
+     * affected objects.
+     *
+     * @return the order value
+     * @see #HIGHEST_PRECEDENCE
+     * @see #LOWEST_PRECEDENCE
+     */
+    /**
+     * 这里确保了此拦截器会在偏序排序时放在第一位
+     * @return
+     */
+    @Override
+    public int getOrder()
+    {
+        return Ordered.HIGHEST_PRECEDENCE+1;
     }
 }

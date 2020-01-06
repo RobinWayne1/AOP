@@ -16,9 +16,9 @@ public class AfterAdvice extends AbstractAspectAdvice implements MethodIntercept
 {
 
 
-    public AfterAdvice(Method aspectJAdviceMethod, AspectExpressionPointcut pointcut, AspectInstanceFactory aspectInstanceFactory)
+    public AfterAdvice(Method aspectJAdviceMethod, AspectExpressionPointcut pointcut, AspectInstanceFactory aspectInstanceFactory,int declaringOrder)
     {
-        super(aspectJAdviceMethod, pointcut, aspectInstanceFactory);
+        super(aspectJAdviceMethod, pointcut, aspectInstanceFactory,declaringOrder);
     }
 
     @Override

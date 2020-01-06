@@ -3,7 +3,8 @@ package myframework.aop.factory.impl;
 import myframework.aop.factory.AspectInstanceFactory;
 import myframework.aop.factory.MetaDataAwareAspectInstanceFactory;
 import myframework.aop.metadata.AspectMetaData;
-import myframework.aop.metadata.factory.AspectMetaDataFactory;
+
+import myframework.aop.metadata.AspectMetadata;
 import myframework.core.factory.BeanFactory;
 import myframework.core.definition.Definition;
 import myframework.core.factory.ConfigurableInstantiationCapableBeanFactory;
@@ -27,13 +28,13 @@ public class NonLazyInitAspectInstanceFactory implements MetaDataAwareAspectInst
 
     private final ConfigurableInstantiationCapableBeanFactory beanFactory;
 
-    private final AspectMetaData aspectMetaData;
+    private final AspectMetadata aspectMetadata;
 
     public NonLazyInitAspectInstanceFactory(String aspectName, ConfigurableInstantiationCapableBeanFactory beanFactory,Class<?> beanType)
     {
         this.aspectName = aspectName;
         this.beanFactory = beanFactory;
-        this.aspectMetaData= AspectMetaDataFactory.getAspectMetaData(beanType,aspectName);
+        this.aspectMetadata= new AspectMetadata(aspectName,beanType);
     }
 
     /**
@@ -54,8 +55,8 @@ public class NonLazyInitAspectInstanceFactory implements MetaDataAwareAspectInst
      * @return
      */
     @Override
-    public AspectMetaData getAspectMetaData()
+    public AspectMetadata getAspectMetaData()
     {
-        return this.aspectMetaData;
+        return this.aspectMetadata;
     }
 }

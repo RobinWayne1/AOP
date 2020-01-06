@@ -14,9 +14,9 @@ import java.lang.reflect.Method;
  */
 public class BeforeAdvice extends AbstractAspectAdvice implements MethodInterceptor
 {
-    public BeforeAdvice(Method aspectJAdviceMethod, AspectExpressionPointcut pointcut, AspectInstanceFactory aspectInstanceFactory)
+    public BeforeAdvice(Method aspectJAdviceMethod, AspectExpressionPointcut pointcut, AspectInstanceFactory aspectInstanceFactory,int declaringOrder)
     {
-        super(aspectJAdviceMethod, pointcut, aspectInstanceFactory);
+        super(aspectJAdviceMethod, pointcut, aspectInstanceFactory,declaringOrder);
     }
 
     @Override

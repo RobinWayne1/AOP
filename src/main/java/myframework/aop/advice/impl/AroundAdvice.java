@@ -14,9 +14,9 @@ import java.lang.reflect.Method;
  */
 public class AroundAdvice extends AbstractAspectAdvice implements MethodInterceptor
 {
-    public AroundAdvice(Method aspectJAdviceMethod, AspectExpressionPointcut pointcut, AspectInstanceFactory aspectInstanceFactory)
+    public AroundAdvice(Method aspectJAdviceMethod, AspectExpressionPointcut pointcut, AspectInstanceFactory aspectInstanceFactory,int declaringOrder)
     {
-        super(aspectJAdviceMethod, pointcut, aspectInstanceFactory);
+        super(aspectJAdviceMethod, pointcut, aspectInstanceFactory,declaringOrder);
     }
 
     /**

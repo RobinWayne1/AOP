@@ -62,8 +62,13 @@ public class AbstractAspectAdvice implements Advice
      */
     private int joinPointArgumentIndex = -1;
 
+    /**
+     * 增强方法在切面里定义的顺序,给sortAdvisor()用
+     */
+    private int declaringOrder;
+
     public AbstractAspectAdvice(
-            Method aspectAdviceMethod, AspectExpressionPointcut pointcut, AspectInstanceFactory aspectInstanceFactory)
+            Method aspectAdviceMethod, AspectExpressionPointcut pointcut, AspectInstanceFactory aspectInstanceFactory,int declaringOrder)
     {
         this.declaringClass = aspectAdviceMethod.getDeclaringClass();
         this.methodName = aspectAdviceMethod.getName();
@@ -71,6 +76,7 @@ public class AbstractAspectAdvice implements Advice
         this.aspectAdviceMethod = aspectAdviceMethod;
         this.pointcut = pointcut;
         this.aspectInstanceFactory = aspectInstanceFactory;
+        this.declaringOrder=declaringOrder;
     }
 
     protected JoinPoint getJoinPoint()
@@ -170,10 +176,10 @@ public class AbstractAspectAdvice implements Advice
     }
 
     /**
-     * 此方法主要用于绑定如afterReturning等(return())参数,JoinPoint则是在argBinding绑定的
+     * 此方法主要用于绑定如afterReturning等(return())参数,JoinPoint则是在argBinding绑定的,但是也要在此方法中做判断.
      * 此方法用作以后扩展afterReturning
      * <p>
-     * 而此方法也要判断是否有joinPoint或proceedingJoinPoint
+     * 此方法也要判断是否有joinPoint或proceedingJoinPoint
      */
     public final synchronized void calculateArgumentBindings()
     {

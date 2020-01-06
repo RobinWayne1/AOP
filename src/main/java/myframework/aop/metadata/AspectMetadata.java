@@ -5,12 +5,12 @@ import java.lang.reflect.Method;
 import java.util.Map;
 
 /**
- * 切面类的元信息
+ * 切面类的元信息,spring中的此类有一个功能就是判断当前切面类是要设置成原型还是单例
  *
  * @author Robin
  * @date 2019/12/3 -16:34
  */
-public class AspectMetaData
+public class AspectMetadata
 {
     private final String aspectName;
 
@@ -19,13 +19,13 @@ public class AspectMetaData
     /**
      * 需要修改的地方，map的keySet()是无序的,所以不能这样搞进来,只能用List存储
      */
-    private final Map<Method, Annotation> adviceMethodInfoMap;
+//    private final Map<Method, Annotation> adviceMethodInfoMap;
 
-    public AspectMetaData(String aspectName, Class<?> aspectClass, Map<Method, Annotation> adviceMethodInfoMap)
+    public AspectMetadata(String aspectName, Class<?> aspectClass)
     {
         this.aspectName = aspectName;
         this.aspectClass = aspectClass;
-        this.adviceMethodInfoMap = adviceMethodInfoMap;
+//        this.adviceMethodInfoMap = adviceMethodInfoMap;
     }
 
     public String getAspectName()
@@ -38,8 +38,4 @@ public class AspectMetaData
         return aspectClass;
     }
 
-    public Map<Method, Annotation> getAdviceMethodInfoMap()
-    {
-        return adviceMethodInfoMap;
-    }
 }

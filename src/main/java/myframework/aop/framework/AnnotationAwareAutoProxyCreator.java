@@ -17,7 +17,7 @@ import java.util.List;
  * @author Robin
  * @date 2019/11/28 -15:48
  */
-public class AnnotationAwareAutoProxyCreator extends AbstractAdvisorAutoProxyCreator
+public class AnnotationAwareAutoProxyCreator extends AbstractAspectAwareAdvisorAutoProxyCreator
 {
 
     private BeanFactoryAspectAdvisorBuilder builder;
@@ -37,15 +37,7 @@ public class AnnotationAwareAutoProxyCreator extends AbstractAdvisorAutoProxyCre
         this.builder=new BeanFactoryAspectAdvisorBuilder(beanFactory,this.advisorFactory);
     }
 
-    /**
-     * 默认为空方法,留给子类扩展,主要用于某些子类creator
-     * 需要某些advisor时在此处创建并加入advisor链
-     */
-    @Override
-    protected void extendAdvisor(List<Advisor>advisorList)
-    {
-        advisorList.add(new DefaultPointcutAdvisor(ExposeInvocationInterceptor.INSATNCE));
-    }
+
 
     /**
      * 找到候选增强器

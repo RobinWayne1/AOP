@@ -1,6 +1,7 @@
 package myframework.aop.factory;
 
-import myframework.aop.metadata.AspectMetaData;
+import myframework.aop.metadata.AspectMetadata;
+import myframework.aop.metadata.AspectMetadata;
 
 /**
  * @author Robin
@@ -13,5 +14,5 @@ public interface MetaDataAwareAspectInstanceFactory extends AspectInstanceFactor
      * 返回切面元信息
      * @return
      */
-    AspectMetaData getAspectMetaData();
+    AspectMetadata getAspectMetaData();
 }
