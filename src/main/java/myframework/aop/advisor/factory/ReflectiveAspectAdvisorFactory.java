@@ -14,19 +14,16 @@ import myframework.aop.anntations.Aspect;
 import myframework.aop.anntations.Before;
 import myframework.aop.factory.MetaDataAwareAspectInstanceFactory;
 
-import myframework.aop.metadata.AspectMetadata;
 import myframework.aop.pointcut.impl.AspectExpressionPointcut;
 import myframework.exception.NotAnAspectException;
 import myframework.exception.UnknowedOperationException;
-import myframework.util.AnnotationUtil;
+import myframework.util.AnnotationUtils;
 
 import java.lang.annotation.Annotation;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author Robin
@@ -102,7 +99,7 @@ public class ReflectiveAspectAdvisorFactory extends AbstractAdvisorFactory
          */
 
         String attributeName = "value";
-        String expression = (String) AnnotationUtil.findAnnotationValue(attributeName, aspectAnnotation);
+        String expression = (String) AnnotationUtils.findAnnotationValue(attributeName, aspectAnnotation);
         if(expression!=null)
         {
             AspectExpressionPointcut aep = new AspectExpressionPointcut(candidateAspectClass);

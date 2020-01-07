@@ -2,7 +2,7 @@ package myframework.aop.factory.impl;
 
 import myframework.aop.factory.AspectInstanceFactory;
 import myframework.aop.factory.MetaDataAwareAspectInstanceFactory;
-import myframework.aop.metadata.AspectMetaData;
+
 
 import myframework.aop.metadata.AspectMetadata;
 import myframework.core.factory.BeanFactory;

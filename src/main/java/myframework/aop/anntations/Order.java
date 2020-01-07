@@ -17,5 +17,5 @@ import java.lang.annotation.Target;
 public @interface Order
 {
     @NotNull
-    String value();
+    int value();
 }

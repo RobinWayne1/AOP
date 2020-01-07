@@ -20,7 +20,7 @@ import java.lang.reflect.Method;
  * @author Robin
  * @date 2019/12/7 -10:23
  */
-public class AbstractAspectAdvice implements Advice
+public abstract class AbstractAspectAdvice implements Advice
 {
 
     protected static final String JOIN_POINT_KEY = JoinPoint.class.getName();
