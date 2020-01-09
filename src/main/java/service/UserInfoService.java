@@ -2,8 +2,9 @@ package service;
 
 /**
  * @author Robin
- * @date 2019/11/28 -18:51
+ * @date 2020/1/9 -20:35
  */
-public class UserInfoService
+public interface UserInfoService
 {
+     void helloWorld();
 }

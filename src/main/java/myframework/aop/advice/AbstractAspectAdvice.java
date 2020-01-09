@@ -63,7 +63,7 @@ public abstract class AbstractAspectAdvice implements Advice
     private int joinPointArgumentIndex = -1;
 
     /**
-     * 增强方法在切面里定义的顺序,给sortAdvisor()用
+     * 增强方法在切面里定义的顺序,给sortAdvisor()用,这里虽然赋值了,但永远是0且不会被使用
      */
     private int declaringOrder;
 

@@ -14,6 +14,7 @@ import java.lang.reflect.Method;
  * advisor实现类,封装pointcut和advice
  * <p></p>
  * 本来想用DefaultPointAdvisor,但是这个名字有别的用处
+ *
  * @author Robin
  * @date 2019/11/28 -23:22
  */
@@ -37,20 +38,20 @@ public class InstantiationModelAwarePointcutAdvisorImpl implements PointcutAdvis
      */
     private final int declaringOrder;
 
-    public InstantiationModelAwarePointcutAdvisorImpl(AspectExpressionPointcut pointcut, AspectAdvisorFactory advisorFactory, MetaDataAwareAspectInstanceFactory aspectInstanceFactory, Method adviceMethod, String aspectName,int declaringOrder)
+    public InstantiationModelAwarePointcutAdvisorImpl(AspectExpressionPointcut pointcut, AspectAdvisorFactory advisorFactory, MetaDataAwareAspectInstanceFactory aspectInstanceFactory, Method adviceMethod, String aspectName, int declaringOrder)
     {
         this.pointcut = pointcut;
         this.advisorFactory = advisorFactory;
         this.aspectInstanceFactory = aspectInstanceFactory;
         this.adviceMethod = adviceMethod;
         this.aspectName = aspectName;
-        this.declaringOrder=declaringOrder;
-        this.advice=instantiateAdvice();
+        this.declaringOrder = declaringOrder;
+        this.advice = instantiateAdvice();
     }
 
     private Advice instantiateAdvice()
     {
-        return this.advisorFactory.getAdvice(this.adviceMethod,this.pointcut,this.aspectInstanceFactory,this.declaringOrder);
+        return this.advisorFactory.getAdvice(this.adviceMethod, this.pointcut, this.aspectInstanceFactory, this.declaringOrder);
     }
 
     /**
@@ -59,7 +60,7 @@ public class InstantiationModelAwarePointcutAdvisorImpl implements PointcutAdvis
     @Override
     public String getAspectName()
     {
-        return null;
+        return this.aspectName;
     }
 
     /**
@@ -131,5 +132,13 @@ public class InstantiationModelAwarePointcutAdvisorImpl implements PointcutAdvis
     public Advice getAdvice()
     {
         return this.advice;
+    }
+
+
+    @Override
+    public String toString()
+    {
+        return "Advice:" + getAdvice().getClass().getTypeName() +
+                ",Aspect:" + getAspectName() ;
     }
 }

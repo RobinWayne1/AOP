@@ -6,11 +6,14 @@ import myframework.aop.pointcut.Pointcut;
 import myframework.exception.AspectAnnotationException;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * 注意此处的成员变量都是对Pointcut的阐释(即目标方法,而不是增强方法)
  *
+ * 此Pointcut非Spring的poingcut,应该是不同的
  * @author Robin
  * @date 2019/11/28 -21:34
  */
@@ -19,7 +22,7 @@ public class AspectExpressionPointcut implements ClassFilter, MethodMatcher, Poi
 {
     private String returnType;
 
-    private Class<?>[] parameterTypes;
+    private List<Class<?>> parameterTypes;
 
     private String expression;
 
@@ -30,6 +33,8 @@ public class AspectExpressionPointcut implements ClassFilter, MethodMatcher, Poi
      * 表达式上所需增强的类
      */
     private String targetClass;
+
+    private boolean isAllParameters = false;
 
 
 //    public AspectExpressionPointcut(Class<?> returnType, Class<?>[] parameterType, Integer parameterCount, String expression)
@@ -55,30 +60,45 @@ public class AspectExpressionPointcut implements ClassFilter, MethodMatcher, Poi
         {
             throw new AspectAnnotationException(this.aspectClass, "Bad aspect method expression format!");
         }
-        this.returnType = ele[0];
-        this.targetClass = ele[1];
-        this.methodName = ele[2].substring(0, ele[2].indexOf("\\(") - 1);
-        String parameters = ele[2].substring(ele[2].indexOf("\\(") + 1, ele[2].length() - 1);
-        if (parameters.equals(".."))
+        try
         {
-            this.parameterTypes = ALL_PARAMETERS;
-        } else
-        {
-            try
+            this.returnType = ele[0];
+            this.targetClass = ele[1];
+            this.methodName = ele[2].substring(0, ele[2].indexOf("("));
+            String parameters = ele[2].substring(ele[2].indexOf("(") + 1, ele[2].length() - 1);
+            /**
+             * 改一下思路,如果是所有参数即(..),则isAllParameters=true,parameterType=emptyList
+             * 如果是无参数即(),则isAllParameters=false,parameterType=emptyList
+             * 如果是有参数,则isAllParameters=false,parameterType!=emptyList
+             */
+            //所有参数的情况
+            if (parameters.equals(".."))
             {
-                //如果是""则会返回"",表示无参数  ( )所以当无参数时写法应该是空格,即()和(..)作用一样,代表任意参数
-                String[] parameter = parameters.split(",");
-                Class<?>[] parameterType = new Class[parameter.length];
-                for (int p = 0; p < parameter.length; p++)
+                this.isAllParameters = true;
+                this.parameterTypes = Empty;
+            } else
+            {
+                //无参数的情况
+                if (parameters.equals(""))
                 {
-                    //如果为""这里就会报错,需要修改方法
-                    parameterType[p] = Class.forName(parameter[p]);
+                    this.parameterTypes = Empty;
                 }
-                this.parameterTypes = parameterType;
-            } catch (ClassNotFoundException e)
-            {
-                throw new AspectAnnotationException(this.aspectClass, "Bad aspect method expression format or parameters type no exist!");
+                //有参数的情况
+                else
+                {
+                    //如果是""(空串)则会返回"",表示无参数,如果不做上面一步判断则parameter.length()就会变成1则出错
+                    String[] parameter = parameters.split(",");
+                    List<Class<?>> parameterType = new ArrayList<>(parameter.length);
+                    for (int p = 0; p < parameter.length; p++)
+                    {
+                        parameterType.add(Class.forName(parameter[p]));
+                    }
+                    this.parameterTypes = parameterType;
+                }
             }
+        } catch (Exception e)
+        {
+            throw new AspectAnnotationException(this.aspectClass, "Bad aspect method expression format or parameters type no exist!");
         }
 
     }
@@ -103,8 +123,8 @@ public class AspectExpressionPointcut implements ClassFilter, MethodMatcher, Poi
     @Override
     public boolean matches(Class targetClass)
     {
-        //如果目标类是*即为某包下的所有方法
-        if (this.targetClass.endsWith("*"))
+        //如果目标类是*即为某包下的所有类
+        if (this.targetClass.endsWith(ALL_CLASS))
         {
             return this.targetClass.startsWith(targetClass.getPackage().getName());
         } else
@@ -129,14 +149,18 @@ public class AspectExpressionPointcut implements ClassFilter, MethodMatcher, Poi
     public boolean matches(Method proxyMethod)
     {
         //先判断方法名
-        if (this.methodName.equals("*") || this.methodName.equals(proxyMethod.getName()))
+        if (this.methodName.equals(ALL_METHODS) || this.methodName.equals(proxyMethod.getName()))
         {
             //得到合法的名字,即不是[Ljava.lang.Object,而是java.lang.Object[]
-            if (this.returnType.equals(proxyMethod.getReturnType().getCanonicalName()))
+            if (this.returnType.equals(ALL_TYPE)||this.returnType.equals(proxyMethod.getReturnType().getCanonicalName()))
             {
-                if (this.parameterTypes != ALL_PARAMETERS)
+                /**
+                 * 限定没有参数的时候isAllParameters==false和list=empty,所以只要不是isAllParameters为真则都要进行对比,
+                 * 因为在没有参数的时候list=empty就会错过判定条件直接返回true了
+                 */
+                if (!this.isAllParameters)
                 {
-                    return Arrays.equals(this.parameterTypes, proxyMethod.getParameterTypes());
+                    return Arrays.equals(this.parameterTypes.toArray(), proxyMethod.getParameterTypes());
                 }
                 return true;
             }

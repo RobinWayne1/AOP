@@ -168,7 +168,8 @@ public class DefaultBeanFactory implements ConfigurableInstantiationCapableBeanF
         {
             Definition mapDefinition = entry.getValue();
             Class actualClass = mapDefinition.getBeanClass();
-            if (actualClass == cl)
+            //判断acturalClass是否实现或继承了cl
+            if (cl.isAssignableFrom(actualClass))
             {
                 beanNames.add(entry.getKey());
             }
@@ -197,7 +198,7 @@ public class DefaultBeanFactory implements ConfigurableInstantiationCapableBeanF
     @Override
     public Class<?> getType(String beanName)
     {
-        return this.beanDefinitionMap.get(beanName).getClass();
+        return this.beanDefinitionMap.get(beanName).getBeanClass();
     }
 
     /**

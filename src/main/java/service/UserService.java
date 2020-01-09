@@ -2,13 +2,10 @@ package service;
 
 /**
  * @author Robin
- * @date 2019/11/27 -11:25
+ * @date 2020/1/9 -20:38
  */
-
-public class UserService
+public interface UserService
 {
-    public void hello()
-    {
-        System.out.println("hello world!");
-    }
+    void hello(String word);
+    void hello();
 }
