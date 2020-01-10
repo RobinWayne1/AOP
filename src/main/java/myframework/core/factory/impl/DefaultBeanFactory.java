@@ -1,5 +1,6 @@
 package myframework.core.factory.impl;
 
+import myframework.core.aware.ApplicationContextAware;
 import myframework.core.factory.ConfigurableInstantiationCapableBeanFactory;
 import myframework.exception.BeanInstantiateException;
 import myframework.core.aware.Aware;

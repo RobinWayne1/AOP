@@ -10,6 +10,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 给ReflectiveMethodInvocation使用的config,将在容器加载时解析好的所有切面方法执行
@@ -36,7 +37,7 @@ public class AdvisedSupport implements Advised
     /**
      * 在chainFactory中解析过一次之后就放入此处
      */
-    private Map<Method, List<MethodInterceptor>> methodCache;
+    private Map<Method, List<MethodInterceptor>> methodCache=new ConcurrentHashMap<>(16);
 
     public List<MethodInterceptor> getInterceptorsAndDynamicInterceptionAdvice(Method method, Class<?> targetClass)
     {

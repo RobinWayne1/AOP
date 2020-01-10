@@ -9,6 +9,8 @@ import myframework.core.factory.BeanFactory;
 import myframework.core.definition.Definition;
 import myframework.core.factory.ConfigurableInstantiationCapableBeanFactory;
 import myframework.core.factory.impl.DefaultBeanFactory;
+import myframework.core.order.Ordered;
+import myframework.util.OrderUtils;
 
 import java.util.Map;
 import java.util.Set;
@@ -58,5 +60,19 @@ public class NonLazyInitAspectInstanceFactory implements MetaDataAwareAspectInst
     public AspectMetadata getAspectMetaData()
     {
         return this.aspectMetadata;
+    }
+
+
+    @Override
+    public int getOrder() {
+        Class<?> type = this.beanFactory.getType(this.aspectName);
+        if (type != null) {
+            //判断是否是Ordered类的子类
+            if (Ordered.class.isAssignableFrom(type)) {
+                return ((Ordered) this.beanFactory.getBean(this.aspectName)).getOrder();
+            }
+            return OrderUtils.getOrder(type, Ordered.LOWEST_PRECEDENCE);
+        }
+        return Ordered.LOWEST_PRECEDENCE;
     }
 }

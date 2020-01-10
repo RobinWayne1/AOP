@@ -18,6 +18,10 @@ public interface Ordered
 
 
     /**
+     * 本来返回类型是int改成了Integer,防止InstantiationModelAwarePointcutAdvisorImpl的getOrder()
+     * 发生错误,即如果返回null则要进行注解抓取order,而我希望advisor使用注解抓取,而ExposeMethodInterceptor不用抓取
+     */
+    /**
      * Get the order value of this object.
      * <p>Higher values are interpreted as lower priority. As a consequence,
      * the object with the lowest value has the highest priority (somewhat

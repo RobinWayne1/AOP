@@ -11,6 +11,7 @@ import myframework.core.factory.WebApplicationContext;
  * @author Robin
  * @date 2019/12/12 -0:57
  */
+@Deprecated
 public interface ApplicationContextAware extends Aware
 {
     /**

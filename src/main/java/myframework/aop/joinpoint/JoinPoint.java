@@ -8,8 +8,15 @@ package myframework.aop.joinpoint;
  */
 public interface JoinPoint
 {
-
+    /**
+     * 得到代理实例
+     * @return
+     */
     Object getThis();
 
+    /**
+     * 得到调用方法的参数
+     * @return
+     */
     Object[] getArgs();
 }

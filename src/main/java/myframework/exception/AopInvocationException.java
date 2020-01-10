@@ -12,6 +12,7 @@ public class AopInvocationException extends RuntimeException {
      */
     public AopInvocationException(String msg) {
         super(msg);
+        this.printStackTrace();
     }
 
     /**
@@ -21,6 +22,7 @@ public class AopInvocationException extends RuntimeException {
      */
     public AopInvocationException(String msg, Throwable cause) {
         super(msg, cause);
+        this.printStackTrace();
     }
 
 }

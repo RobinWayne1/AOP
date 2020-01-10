@@ -37,6 +37,7 @@ public class DefaultAdvisorChainFactory implements AdvisorChainFactory
                     {
                         //spring在这里使用了AdvisorAdapterRegistry转换没实现MethodInterceptor的advice
                         MethodInterceptor mi = (MethodInterceptor) advisor.getAdvice();
+                        interceptorList.add(mi);
                     }
                 }
             }

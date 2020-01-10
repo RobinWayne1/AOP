@@ -3,6 +3,7 @@ package myframework.aop.framework.proxy.impl;
 
 import myframework.aop.advice.MethodInterceptor;
 import myframework.aop.framework.proxy.intercept.ProxyMethodInvocation;
+import myframework.exception.AopInvocationException;
 import myframework.util.AopUtil;
 
 
@@ -115,25 +116,32 @@ public class ReflectiveMethodInvocation implements ProxyMethodInvocation
     }
 
     /**
-     *  拦截器链的控制
-     *  调用拦截器链的invoke
+     * 拦截器链的控制
+     * 调用拦截器链的invoke
+     *
      * @return
      * @throws Throwable
      */
     @Override
     public Object proceed() throws Throwable
     {
-        if(this.currentInterceptorIndex==this.chain.size() - 1)
+        try
         {
-            AopUtil.invokeJoinpointUsingReflection(this.target,this.targetMethod,this.args);
-        }
-        MethodInterceptor currentMethodInterceptor=this.chain.get(++this.currentInterceptorIndex);
+            if (this.currentInterceptorIndex == this.chain.size() - 1)
+            {
+                return AopUtil.invokeJoinpointUsingReflection(this.target, this.targetMethod, this.args);
+            }
+            MethodInterceptor currentMethodInterceptor = this.chain.get(++this.currentInterceptorIndex);
 
-        /**
-         * 链执行开始,由于调用目标方法是在当前proceed()中,所以advice全都是return mi.proceed(),除了around
-         * 是变相调用proceed()
-         */
-        return currentMethodInterceptor.invoke(this);
+            /**
+             * 链执行开始,由于调用目标方法是在当前proceed()中,所以advice全都是return mi.proceed(),除了around
+             * 是变相调用proceed()
+             */
+            return currentMethodInterceptor.invoke(this);
+        }catch (Throwable e)
+        {
+            throw new AopInvocationException(e.getMessage(),e);
+        }
     }
 
 

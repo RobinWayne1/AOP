@@ -109,7 +109,7 @@ public class InstantiationModelAwarePointcutAdvisorImpl implements PointcutAdvis
     @Override
     public int getOrder()
     {
-        return 0;
+        return this.aspectInstanceFactory.getOrder();
     }
 
     /**

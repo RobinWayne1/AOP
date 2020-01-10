@@ -52,7 +52,7 @@ public abstract class AbstractAspectAwareAdvisorAutoProxyCreator extends Abstrac
         {
             result.add(holder.getAdvisor());
         }
-        return null;
+        return result;
     }
 
     /**
@@ -62,7 +62,7 @@ public abstract class AbstractAspectAwareAdvisorAutoProxyCreator extends Abstrac
     @Override
     protected void extendAdvisor(List<Advisor> advisorList)
     {
-        advisorList.add(new DefaultPointcutAdvisor(ExposeInvocationInterceptor.INSATNCE));
+        advisorList.add(0,new DefaultPointcutAdvisor(ExposeInvocationInterceptor.INSATNCE));
     }
 
     private static class PartiallyComparableAdvisorHolder implements PartialOrder.PartialComparable

@@ -62,13 +62,14 @@ public class AopUtil
                 MethodMatcher methodMatcher = pc.getMethodMatcher();
                 if (!classFilter.matches(beanClass))
                 {
-                    return Collections.emptyList();
+                    continue;
                 }
                 /**
                  * 因为实现类可以在实现接口的前提下扩展接口,而Jdk动态代理是不予代理这种扩展的,所以必须从pointcut
                  * 指向的实现类的接口入手
                  */
 
+                p:
                 for (Class<?> interfaceClass : beanClass.getInterfaces())
                 {
                     for (Method interfaceMethod : interfaceClass.getMethods())
@@ -76,6 +77,11 @@ public class AopUtil
                         if (methodMatcher.matches(interfaceMethod))
                         {
                             eligibleAdvisors.add(pa);
+                            /**
+                             * 如果这个bean里有符合增强表达式的方法(无论多少个),都只加入一次,
+                             * 因为这里是相对于整个bean的,而不是bean里方法
+                             */
+                            break p;
                         }
                     }
                 }

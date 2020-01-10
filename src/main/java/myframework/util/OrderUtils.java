@@ -11,9 +11,13 @@ import java.lang.annotation.Annotation;
  */
 public class OrderUtils
 {
-    public static int getOrder(Class cl)
+    public static int getOrder(Class cl,int defaultOrder)
     {
-        Order ann=AnnotationUtils.findAnnotation(cl, Order.class);
-        return (ann).value();
+        Order ann = AnnotationUtils.findAnnotation(cl, Order.class);
+        if (ann != null)
+        {
+            return (ann).value();
+        }
+        return defaultOrder;
     }
 }

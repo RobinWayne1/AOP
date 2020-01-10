@@ -1,6 +1,7 @@
 package myframework.core.order.comparator;
 
 import myframework.aop.anntations.Order;
+import myframework.core.order.Ordered;
 import myframework.util.AnnotationUtils;
 import myframework.util.OrderUtils;
 
@@ -28,7 +29,7 @@ public class AnnotationAwareOrderComparator extends OrderComparator
 
         // Check for @Order and @Priority on various kinds of elements
         if (obj instanceof Class) {
-            return OrderUtils.getOrder((Class<?>) obj);
+            return OrderUtils.getOrder((Class<?>) obj, Ordered.LOWEST_PRECEDENCE);
         }
         else if (obj instanceof Method) {
             Order ann = AnnotationUtils.findAnnotation((Method) obj, Order.class);

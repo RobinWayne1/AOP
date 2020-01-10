@@ -20,8 +20,9 @@ public class BeforeAdvice extends AbstractAspectAdvice implements MethodIntercep
     }
 
     @Override
-    public Object invoke(MethodInvocation mi)
+    public Object invoke(MethodInvocation mi)throws Throwable
     {
-        return invokeAdviceMethod();
+        invokeAdviceMethod();
+        return mi.proceed();
     }
 }

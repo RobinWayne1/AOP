@@ -4,10 +4,10 @@ import myframework.aop.framework.proxy.intercept.ProxyMethodInvocation;
 import myframework.exception.AopInvocationException;
 
 /**
- *
- *
  * 此类用作给aroundAdvice中的ProceedingJoinPoint赋值
- *
+ * <p>
+ * 用于将用户advice与methodInvocation解耦,让用户使用methodInvocation的部分接口
+ * <p>
  * ps:不止环绕通知,如果其他类型通知中参数需要JoinPoint都会注入此类
  *
  * @author Robin
@@ -22,7 +22,7 @@ public class MethodInvocationProceedingJoinPoint implements ProceedingJoinPoint
 
     public MethodInvocationProceedingJoinPoint(ProxyMethodInvocation mi)
     {
-        this.methodInvocation=mi;
+        this.methodInvocation = mi;
     }
 
     /**
@@ -32,9 +32,10 @@ public class MethodInvocationProceedingJoinPoint implements ProceedingJoinPoint
      * @return
      */
     @Override
-    public Object proceed(Object[] args)throws Throwable
+    public Object proceed(Object[] args) throws Throwable
     {
-        if (args.length != this.methodInvocation.getArguments().length) {
+        if (args.length != this.methodInvocation.getArguments().length)
+        {
             throw new AopInvocationException("Arguments length inconformity");
         }
         this.methodInvocation.setArguments(args);
@@ -55,14 +56,19 @@ public class MethodInvocationProceedingJoinPoint implements ProceedingJoinPoint
 
     /**
      * 如果此处直接发布的话则是不安全的发布,得到该对象的增强方法就可以直接任意改你的参数数组
+     *
      * @return
      */
     @Override
     public Object[] getArgs()
     {
-        if(this.args==null)
+        if (this.args == null)
         {
-            this.args=this.methodInvocation.getArguments().clone();
+            Object []arg = this.methodInvocation.getArguments();
+            if (arg != null)
+            {
+                this.args = arg.clone();
+            }
         }
         return this.args;
     }

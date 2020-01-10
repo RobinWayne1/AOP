@@ -13,11 +13,20 @@ public class UserServiceImpl implements UserService
     public void hello()
     {
         System.out.println("hello world!");
+
     }
 
     @Override
-    public void hello(String word)
+    public String hello1()
     {
-        System.out.println(word);
+        System.out.println("hello1");
+        return "yes";
+    }
+
+    @Override
+    public void hello(String word,String word1,String word2)
+    {
+        System.out.println();
+        System.out.println(word+";"+word1+";"+word2);
     }
 }

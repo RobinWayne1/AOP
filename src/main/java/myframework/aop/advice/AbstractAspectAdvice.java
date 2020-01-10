@@ -88,7 +88,7 @@ public abstract class AbstractAspectAdvice implements Advice
      * 知道为什么不用传入mi的方法了,他用static修饰,本意应该是想让用户使用这个方法,而让用户使用怎么可能让其传入
      * 一个mi,所以,就这样
      *
-     * @param mi
+     * @param
      * @return
      */
     public static JoinPoint currentJoinPoint()
@@ -183,7 +183,7 @@ public abstract class AbstractAspectAdvice implements Advice
      */
     public final synchronized void calculateArgumentBindings()
     {
-        if (!this.argumentsIntrospected || this.parameterTypes.length == 0)
+        if (this.argumentsIntrospected || this.parameterTypes.length == 0)
         {
             return;
         }
@@ -200,6 +200,7 @@ public abstract class AbstractAspectAdvice implements Advice
         {
             throw new AopInvocationException("Unknown type advice parameters to bind");
         }
+        this.argumentsIntrospected=true;
     }
 
     private boolean maybeBindJoinPoint(Class<?> candidateParameterType)
