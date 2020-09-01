@@ -19,7 +19,7 @@ import java.util.List;
  * 通过实现了{@link BeanDefinitionRegistry}的{@link DefaultListableBeanFactory}类的registerBeanDefinition()方法
  * ,将{@link AnnotationAwareAspectJAutoProxyCreator}的BeanDefinition注册进{@link DefaultListableBeanFactory}的
  * BeanDefinitionMap中,使其也成为一个bean.若使用的是ApplicationContext类refresh()容器,则会在
- * 刷新过程中通过registerBeanPostProcessors()方法中扫描definitionMap获取到所有是BeanPostProcessor.class的bean,
+ * 刷新过程中通过registerBeanPostProcessors()方法,扫描definitionMap获取到所有是BeanPostProcessor.class的bean,
  * 将其放入{@link AbstractBeanFactory}的beanPostProcessors成员变量中
  * @author Robin
  * @date 2019/11/28 -15:48

@@ -87,6 +87,11 @@ public class DefaultBeanFactory implements ConfigurableInstantiationCapableBeanF
     @Override
     public Object initializeBean(Object existingBean, String beanName)
     {
+        for (BeanPostProcessor processor : this.beanPostProcessors)
+        {
+            //需要修改,不可以单纯从beanMap.getnull
+            processor.postProcessBeforeInitialization(this.beanMap.get(beanName), beanName);
+        }
         invokeAwareMethod(beanName, existingBean);
         for (BeanPostProcessor processor : this.beanPostProcessors)
         {
@@ -110,11 +115,7 @@ public class DefaultBeanFactory implements ConfigurableInstantiationCapableBeanF
     @Override
     public Object createBean(String beanName)
     {
-        for (BeanPostProcessor processor : this.beanPostProcessors)
-        {
-            //需要修改,不可以单纯从beanMap.getnull
-            processor.postProcessBeforeInitialization(this.beanMap.get(beanName), beanName);
-        }
+
         //创建bean实例
         Object beanInstance = instantiateClass(beanName);
 

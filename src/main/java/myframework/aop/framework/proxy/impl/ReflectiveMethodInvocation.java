@@ -135,7 +135,7 @@ public class ReflectiveMethodInvocation implements ProxyMethodInvocation
 
             /**
              * 链执行开始,由于调用目标方法是在当前proceed()中,所以advice全都是return mi.proceed(),除了around
-             * 是变相调用proceed()
+             * 是在用户代码中变相调用proceed()
              */
             return currentMethodInterceptor.invoke(this);
         }catch (Throwable e)

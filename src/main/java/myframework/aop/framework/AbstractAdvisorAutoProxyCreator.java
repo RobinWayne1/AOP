@@ -106,8 +106,8 @@ public abstract class AbstractAdvisorAutoProxyCreator implements BeanPostProcess
 
     /**
      * 只要保证单个切面内的增强顺序是正确的就行,即afterReturning→after→around→before,其他切面的
-     * 根据加载顺序直接加入到上一个切面所有增强的后面.
-     * 使用@Order的话就会将变成:Order(1):{Order(2)}:Order(1),即为1的切面的增强
+     * 根据加载顺序直接加入到上一个切面所有增强的后面(这里指拦截器链的顺序，而不是调用顺序).
+     * 使用@Order的话调用顺序就会将变成:Order(1):{Order(2)}:Order(1),即为1的切面的增强
      * 会将2的切面的增强包裹起来,自己想象
      *
      * @param advisors

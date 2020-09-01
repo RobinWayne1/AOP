@@ -8,7 +8,7 @@ package myframework.aop.framework.proxy.intercept;
 public interface ProxyMethodInvocation extends MethodInvocation
 {
     /**
-     * 给用户存放整个连接点执行过程的
+     * 给用户存放整个连接点执行过程的键值对，如增强方法中需要获得的JoinPoint就会存放到这里
      * @param key
      * @return
      */
